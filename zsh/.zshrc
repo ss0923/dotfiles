@@ -553,8 +553,25 @@ precmd_functions=(_prompt_newline _reset_cursor $precmd_functions)
 eval "$(navi widget zsh)"
 bindkey '^y' _navi_widget
 
+# env
+export HOMEBREW_NO_ENV_HINTS=1
+
+# gpg
+export GPG_TTY=$(tty)
+gpgconf --launch gpg-agent 2>/dev/null
+
+# flutter
+export PATH="$HOME/fvm/default/bin:$PATH"
+
+# sdkman
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
+
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 [[ -n "$ZSHRC_PROF" ]] && zprof || true
 
+export _ZO_DOCTOR=0
 eval "$(zoxide init --cmd cd zsh)"

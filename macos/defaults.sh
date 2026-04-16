@@ -64,7 +64,6 @@ defaults write com.apple.TextEdit RichText -int 0
 # animations
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 defaults write com.apple.dock expose-animation-duration -float 0.1
-# universalaccess requires Full Disk Access for Terminal — silently skip if denied
 defaults write com.apple.universalaccess reduceMotion -bool true 2>/dev/null || true
 defaults write com.apple.universalaccess reduceTransparency -bool true 2>/dev/null || true
 
@@ -117,7 +116,7 @@ sudo pmset -a ttyskeepawake 1 2>/dev/null || true
 # dns
 sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 2>/dev/null || true
 
-# restart affected services
+# restart
 killall Finder Dock SystemUIServer 2>/dev/null || true
 
 echo "macOS defaults configured. Key repeat changes require logout/login."

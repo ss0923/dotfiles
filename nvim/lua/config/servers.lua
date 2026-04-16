@@ -1,6 +1,6 @@
 local M = {}
 
--- servers installed and managed by mason
+-- mason
 M.mason = {
   "vtsls",
   "tailwindcss",
@@ -55,7 +55,7 @@ M.mason = {
   "nginx_language_server",
 }
 
--- servers installed externally, not through mason
+-- external
 M.external = {
   "ruby_lsp",
   "nil_ls",
