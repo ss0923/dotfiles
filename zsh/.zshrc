@@ -38,6 +38,7 @@ zstyle ':fzf-tab:complete:git-log:*' fzf-preview 'git log --oneline --graph --co
 zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview 'git log --oneline --graph --color=always $word'
 
 # keybindings
+zle_highlight+=(paste:none)
 stty -ixon
 WORDCHARS=${WORDCHARS//[\/]}
 bindkey -e
