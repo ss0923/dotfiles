@@ -132,7 +132,7 @@ cask "ghostty"
 cask "gimp"
 cask "hazeover"
 cask "iina"
-cask "jordanbaird-ice"
+# cask "jordanbaird-ice"  # TODO: re-enable when 0.11.13 stable lands (Tahoe 26.4 compat). Install dev build manually: https://github.com/jordanbaird/Ice/releases
 cask "karabiner-elements"
 cask "keyboardcleantool"
 cask "keycastr"
