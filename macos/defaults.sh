@@ -65,7 +65,6 @@ defaults write com.apple.TextEdit RichText -int 0
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 defaults write com.apple.dock expose-animation-duration -float 0.1
 defaults write com.apple.universalaccess reduceMotion -bool true 2>/dev/null || true
-defaults write com.apple.universalaccess reduceTransparency -bool true 2>/dev/null || true
 
 # screenshots
 mkdir -p ~/Screenshots
