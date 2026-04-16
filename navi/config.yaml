@@ -1,0 +1,7 @@
+cheats:
+  paths:
+    - ~/.config/navi/custom
+    - ~/.local/share/navi/cheats
+
+shell:
+  command: zsh

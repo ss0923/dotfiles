@@ -1,0 +1,97 @@
+% docker compose
+
+# Start services in the background
+docker compose up -d
+
+# Start specific service
+docker compose up -d <service>
+
+# Start and force rebuild images
+docker compose up -d --build
+
+# Stop all services
+docker compose down
+
+# Stop and remove volumes
+docker compose down -v
+
+# View logs for a service (follow)
+docker compose logs -f <service>
+
+# View logs (last N lines)
+docker compose logs --tail <lines> <service>
+
+# List running compose services
+docker compose ps
+
+# Execute command in running service
+docker compose exec <service> <command>
+
+# Run a one-off command in new container
+docker compose run --rm <service> <command>
+
+# Restart a service
+docker compose restart <service>
+
+# Pull latest images
+docker compose pull
+
+# Show compose config (resolved)
+docker compose config
+
+$ service: docker compose ps --format '{{.Service}}' 2>/dev/null
+$ lines: echo -e '50\n100\n200\n500'
+
+% docker buildx
+
+# Build image for current platform
+docker buildx build -t <tag> .
+
+# Build for multiple platforms
+docker buildx build --platform linux/amd64,linux/arm64 -t <tag> .
+
+# Build and push to registry
+docker buildx build --platform linux/amd64,linux/arm64 -t <tag> --push .
+
+# Create a new builder instance
+docker buildx create --name <name> --use
+
+# List builder instances
+docker buildx ls
+
+# Inspect current builder
+docker buildx inspect
+
+% docker prune
+
+# Remove stopped containers
+docker container prune -f
+
+# Remove unused images
+docker image prune -f
+
+# Remove all unused images (not just dangling)
+docker image prune -a -f
+
+# Remove unused volumes
+docker volume prune -f
+
+# Remove unused networks
+docker network prune -f
+
+# Remove everything unused (full system prune)
+docker system prune -f
+
+# Full prune including volumes
+docker system prune -a --volumes -f
+
+# Show disk usage
+docker system df
+
+# Show detailed disk usage
+docker system df -v
+
+% lazydocker
+
+# Open lazydocker
+lazydocker

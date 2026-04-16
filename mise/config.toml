@@ -1,0 +1,21 @@
+[settings]
+auto_install = true
+not_found_auto_install = true
+http_timeout = "300"
+status.show_tools = false
+
+[tools]
+node = "24"
+python = "3.14"
+erlang = "28"
+elixir = "1.19-otp-28"
+gleam = "1"
+rust = "1.94"
+go = "1.26"
+ruby = "4.0"
+java = "25"
+kotlin = "2"
+zig = "0.15"
+flutter = "3"
+terraform = "1"
+bun = "latest"

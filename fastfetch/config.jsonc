@@ -1,0 +1,36 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "file",
+    "source": "~/.config/fastfetch/logo.txt",
+    "padding": {
+      "top": 0,
+      "left": 2,
+      "right": 4
+    },
+    "color": {
+      "1": "#505050"
+    }
+  },
+  "display": {
+    "separator": "  ",
+    "key": {
+      "type": "icon"
+    },
+    "color": {
+      "keys": "#99FFE4",
+      "output": "#f0ede8"
+    }
+  },
+  "modules": [
+    { "type": "os", "format": "{pretty-name} {arch}" },
+    { "type": "host", "format": "MacBook Pro" },
+    { "type": "cpu", "format": "{name}" },
+    { "type": "uptime", "format": "{days}d {hours}h" },
+    "shell",
+    "packages",
+    { "type": "memory", "format": "{used} / {total} ({percentage})" },
+    { "type": "battery", "format": "{capacity} [{status}]" },
+    "break"
+  ]
+}

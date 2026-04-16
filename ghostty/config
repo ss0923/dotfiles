@@ -1,0 +1,43 @@
+font-family = Berkeley Mono
+font-family = Symbols Nerd Font
+font-size = 18
+font-thicken = true
+
+theme = vesper
+
+macos-titlebar-style = hidden
+window-padding-x = 20
+window-padding-y = 16
+window-padding-balance = true
+window-padding-color = extend
+window-inherit-working-directory = true
+
+macos-option-as-alt = true
+macos-auto-secure-input = true
+
+selection-background = #282828
+selection-foreground = #d4d4d4
+
+cursor-style = underline
+cursor-style-blink = false
+adjust-cursor-thickness = 3
+cursor-color = #82d9c2
+cursor-text = #101010
+mouse-hide-while-typing = true
+
+keybind = super+k=text:\x1b[k
+keybind = super+t=text:\x00c
+keybind = super+w=text:\x00x
+keybind = super+shift+[=text:\x00p
+keybind = super+shift+]=text:\x00n
+keybind = shift+enter=text:\x1b\r
+keybind = super+a=unbind
+confirm-close-surface = false
+
+shell-integration-features = sudo,title,ssh-env,ssh-terminfo
+
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+quick-terminal-position = top
+quick-terminal-animation-duration = 0.1
+
+window-save-state = always
