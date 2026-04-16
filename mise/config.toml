@@ -3,20 +3,22 @@ auto_install = true
 not_found_auto_install = true
 http_timeout = "300"
 status.show_tools = false
+go.set_gobin = false
 
 [tools]
-node = "24"
+node = ["24", "20"]
 python = "3.14"
 erlang = "28"
 elixir = "1.19-otp-28"
 rust = "1.94"
 go = "1.26"
 ruby = "4.0"
-java = "25"
+java = ["25", "corretto-21", "corretto-17"]
 kotlin = "2"
 zig = "0.15"
 terraform = "1"
 bun = "latest"
 maven = "latest"
 pnpm = "latest"
+yarn = "latest"
 awscli = "latest"

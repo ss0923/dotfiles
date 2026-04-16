@@ -6,6 +6,8 @@ return {
     config = function()
       local jdtls = require("jdtls")
       local mason_path = vim.fn.stdpath("data") .. "/mason/packages"
+      local mise_java = vim.fn.expand("~/.local/share/mise/installs/java")
+      local java_25_home = mise_java .. "/25"
 
       local bundles = {}
       local debug_jar = vim.fn.glob(
@@ -41,12 +43,20 @@ return {
         jdtls.start_or_attach({
           cmd = {
             "jdtls",
+            "--java-executable", java_25_home .. "/bin/java",
             "-data", workspace_dir,
           },
           root_dir = root_dir,
           capabilities = require("blink.cmp").get_lsp_capabilities(),
           settings = {
             java = {
+              configuration = {
+                runtimes = {
+                  { name = "JavaSE-17", path = mise_java .. "/corretto-17" },
+                  { name = "JavaSE-21", path = mise_java .. "/corretto-21" },
+                  { name = "JavaSE-25", path = java_25_home, default = true },
+                },
+              },
               signatureHelp = { enabled = true },
               completion = {
                 favoriteStaticMembers = {
@@ -99,6 +109,8 @@ return {
     dependencies = {
       "mfussenegger/nvim-jdtls",
     },
-    opts = {},
+    opts = {
+      java_cmd = vim.fn.expand("~/.local/share/mise/installs/java/25/bin/java"),
+    },
   },
 }

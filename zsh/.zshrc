@@ -1,6 +1,6 @@
 [[ -n "$ZSHRC_PROF" ]] && zmodload zsh/zprof
 
-if [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" != "vscode" ]] && command -v tmux &>/dev/null; then
+if [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]] && [[ -t 1 ]] && command -v tmux &>/dev/null; then
   exec tmux new-session -A -s main -c "$HOME"
 fi
 
@@ -10,7 +10,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 eval "$(sheldon source)"
 
 AUTO_NOTIFY_THRESHOLD=30
-AUTO_NOTIFY_IGNORE=("vim" "nvim" "less" "more" "man" "top" "htop" "btm" "ssh" "tmux" "docker" "lazygit" "yazi" "pi" "navi" "watch" "tail" "bat")
+AUTO_NOTIFY_IGNORE=("vim" "nvim" "less" "more" "man" "top" "htop" "btm" "ssh" "tmux" "docker" "lazygit" "yazi" "claude" "navi" "watch" "tail" "bat")
 
 if [[ -n "$TMUX" ]] && (( $+functions[_auto_notify_message] )); then
     eval "original_$(declare -f _auto_notify_message)"

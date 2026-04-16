@@ -52,7 +52,6 @@ M.mason = {
   "wgsl_analyzer",
   "verible",
   "vhdl_ls",
-  "nginx_language_server",
 }
 
 -- external
