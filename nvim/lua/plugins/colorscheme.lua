@@ -34,5 +34,8 @@ return {
 
     vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#343434", bg = "NONE" })
     vim.api.nvim_set_hl(0, "DiffTextAdd", { bg = "#1A3A2A" })
+
+    vim.api.nvim_set_hl(0, "SymbolUsageRef", { link = "Comment" })
+    vim.api.nvim_set_hl(0, "SymbolUsageImpl", { link = "Constant" })
   end,
 }

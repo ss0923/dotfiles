@@ -72,6 +72,8 @@ return {
                   staticStarThreshold = 9999,
                 },
               },
+              referencesCodeLens = { enabled = false },
+              implementationsCodeLens = { enabled = false },
             },
           },
           init_options = {
