@@ -3,6 +3,11 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
+-- Disable netrw — directory handling is done by snacks.dashboard (for `nvim .`),
+-- snacks.explorer (on-demand tree), and oil.nvim (edit dir as buffer).
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
 local opt = vim.opt

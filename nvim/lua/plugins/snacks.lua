@@ -45,7 +45,7 @@ return {
       hl = "SnacksIndent",
     },
     scope = { enabled = true },
-    explorer = { hidden = true },
+    explorer = { hidden = true, replace_netrw = false },
     scroll = { enabled = true },
     terminal = {},
     toggle = {},
