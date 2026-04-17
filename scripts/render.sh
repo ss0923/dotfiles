@@ -1,88 +1,73 @@
 #!/bin/bash
 # render.sh — regenerate the public showcase from the private chezmoi sources.
 #
-# Runs idempotently from either machine (work or personal). Wipes and rebuilds
-# both personal/ and work/ subtrees from scratch every time, so deletions in
-# the templates flow through cleanly.
+# Renders the personal-Mac variant into the root of this repo, from either
+# machine. Runs idempotently; safe to re-run. Wipes managed subdirs and
+# rebuilds from scratch so deletions in the templates flow through cleanly.
 #
-# Do NOT edit files under personal/ or work/ directly — they are generated and
-# will be overwritten on the next render.
+# Do NOT edit the generated files directly — they are overwritten on each render.
 
 set -euo pipefail
 
 PUB_ROOT="${PUB_ROOT:-$HOME/dev/other/dotfiles}"
 CHEZMOI_SRC="$HOME/.local/share/chezmoi"
 
-render_variant() {
-  local variant="$1"
-  local is_personal="$2"
-  local out="$PUB_ROOT/$variant"
-  local stage state
-  stage="$(mktemp -d -t "chezmoi-render-${variant}.XXXXXX")"
-  state="$(mktemp -t "chezmoi-state-${variant}.XXXXXX")"
-  # shellcheck disable=SC2064
-  trap "rm -rf '$stage' '$state'" RETURN
+stage="$(mktemp -d -t chezmoi-render.XXXXXX)"
+state="$(mktemp -t chezmoi-state.XXXXXX)"
+trap 'rm -rf "$stage" "$state"' EXIT
 
-  echo "==> rendering $variant variant"
+echo "==> rendering personal variant"
 
-  chezmoi apply \
-    --force \
-    --exclude=scripts,encrypted,externals \
-    --destination="$stage" \
-    --persistent-state="$state" \
-    --override-data "{\"personal\": $is_personal, \"public\": true}"
+chezmoi apply \
+  --force \
+  --exclude=scripts,encrypted,externals \
+  --destination="$stage" \
+  --persistent-state="$state" \
+  --override-data '{"personal": true, "public": true}'
 
-  rm -rf "$out"
-  mkdir -p "$out"
+# Wipe only the tool-named subdirs we manage — leave README, LICENSE, scripts/, .git/, etc.
+for d in aerospace bat btop fastfetch fd ghostty git homebrew karabiner lazygit macos mise navi nvim ripgrep sheldon starship tmux yazi yt-dlp zsh; do
+  rm -rf "${PUB_ROOT:?}/$d"
+done
 
-  # --- allowlist: what appears in the public showcase ---
-  # Copy whole subdirs from staging (~/.config/*) into tool-named folders.
-  cp -r "$stage/.config/aerospace"   "$out/aerospace"
-  cp -r "$stage/.config/bat"         "$out/bat"
-  cp -r "$stage/.config/btop"        "$out/btop"
-  cp -r "$stage/.config/fastfetch"   "$out/fastfetch"
-  [ -d "$stage/.config/fd"       ] && cp -r "$stage/.config/fd"       "$out/fd"
-  cp -r "$stage/.config/ghostty"     "$out/ghostty"
-  cp -r "$stage/.config/homebrew"    "$out/homebrew"
-  cp -r "$stage/.config/karabiner"   "$out/karabiner"
-  cp -r "$stage/.config/lazygit"     "$out/lazygit"
-  cp -r "$stage/.config/mise"        "$out/mise"
-  cp -r "$stage/.config/navi"        "$out/navi"
-  cp -r "$stage/.config/nvim"        "$out/nvim"
-  cp -r "$stage/.config/ripgrep"     "$out/ripgrep"
-  cp -r "$stage/.config/sheldon"     "$out/sheldon"
-  [ -d "$stage/.config/starship" ] && cp -r "$stage/.config/starship" "$out/starship"
-  cp -r "$stage/.config/tmux"        "$out/tmux"
-  cp -r "$stage/.config/yazi"        "$out/yazi"
-  cp -r "$stage/.config/yt-dlp"      "$out/yt-dlp"
+# --- allowlist: what appears in the public showcase ---
+cp -r "$stage/.config/aerospace"   "$PUB_ROOT/aerospace"
+cp -r "$stage/.config/bat"         "$PUB_ROOT/bat"
+cp -r "$stage/.config/btop"        "$PUB_ROOT/btop"
+cp -r "$stage/.config/fastfetch"   "$PUB_ROOT/fastfetch"
+[ -d "$stage/.config/fd"       ] && cp -r "$stage/.config/fd"       "$PUB_ROOT/fd"
+cp -r "$stage/.config/ghostty"     "$PUB_ROOT/ghostty"
+cp -r "$stage/.config/homebrew"    "$PUB_ROOT/homebrew"
+cp -r "$stage/.config/karabiner"   "$PUB_ROOT/karabiner"
+cp -r "$stage/.config/lazygit"     "$PUB_ROOT/lazygit"
+cp -r "$stage/.config/mise"        "$PUB_ROOT/mise"
+cp -r "$stage/.config/navi"        "$PUB_ROOT/navi"
+cp -r "$stage/.config/nvim"        "$PUB_ROOT/nvim"
+cp -r "$stage/.config/ripgrep"     "$PUB_ROOT/ripgrep"
+cp -r "$stage/.config/sheldon"     "$PUB_ROOT/sheldon"
+[ -d "$stage/.config/starship" ] && cp -r "$stage/.config/starship" "$PUB_ROOT/starship"
+cp -r "$stage/.config/tmux"        "$PUB_ROOT/tmux"
+cp -r "$stage/.config/yazi"        "$PUB_ROOT/yazi"
+cp -r "$stage/.config/yt-dlp"      "$PUB_ROOT/yt-dlp"
 
-  # zsh shell (files live at HOME root, regroup under zsh/)
-  mkdir -p "$out/zsh"
-  cp "$stage/.zshrc"    "$out/zsh/.zshrc"
-  cp "$stage/.zshenv"   "$out/zsh/.zshenv"
-  cp "$stage/.zprofile" "$out/zsh/.zprofile"
+mkdir -p "$PUB_ROOT/zsh"
+cp "$stage/.zshrc"    "$PUB_ROOT/zsh/.zshrc"
+cp "$stage/.zshenv"   "$PUB_ROOT/zsh/.zshenv"
+cp "$stage/.zprofile" "$PUB_ROOT/zsh/.zprofile"
 
-  # git config — sanitize absolute gh path so the public file isn't machine-specific
-  mkdir -p "$out/git"
-  sed 's|!.*/bin/gh|!gh|g' "$stage/.config/git/config" > "$out/git/config"
+mkdir -p "$PUB_ROOT/git"
+sed 's|!.*/bin/gh|!gh|g' "$stage/.config/git/config" > "$PUB_ROOT/git/config"
 
-  # navi config — sanitize $HOME → ~
-  sed "s|$HOME|~|g" "$stage/.config/navi/config.yaml" > "$out/navi/config.yaml"
+sed "s|$HOME|~|g" "$stage/.config/navi/config.yaml" > "$PUB_ROOT/navi/config.yaml"
 
-  # mise settings — sanitize $HOME → ~ (template renders absolute homeDir)
-  if [ -f "$out/mise/settings.toml" ]; then
-    sed -i '' "s|$HOME|~|g" "$out/mise/settings.toml"
-  fi
+if [ -f "$PUB_ROOT/mise/settings.toml" ]; then
+  sed -i '' "s|$HOME|~|g" "$PUB_ROOT/mise/settings.toml"
+fi
 
-  # macOS defaults (from chezmoiscripts — scripts were excluded, so copy raw)
-  mkdir -p "$out/macos"
-  cp "$CHEZMOI_SRC/home/.chezmoiscripts/darwin/run_onchange_after_08-macos-defaults.sh" \
-     "$out/macos/defaults.sh"
-  chmod +x "$out/macos/defaults.sh"
-}
-
-render_variant personal true
-render_variant work     false
+mkdir -p "$PUB_ROOT/macos"
+cp "$CHEZMOI_SRC/home/.chezmoiscripts/darwin/run_onchange_after_08-macos-defaults.sh" \
+   "$PUB_ROOT/macos/defaults.sh"
+chmod +x "$PUB_ROOT/macos/defaults.sh"
 
 cd "$PUB_ROOT"
 echo "==> done"
