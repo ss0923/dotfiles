@@ -58,9 +58,11 @@ opt.timeoutlen = 300
 opt.ttimeout = true
 opt.ttimeoutlen = 10
 opt.guicursor = "n-v-sm:block,i-ci-ve-c:ver25,r-cr-o:hor20"
+local fold_open = "\226\150\190"  -- ▾ U+25BE BLACK DOWN-POINTING SMALL TRIANGLE
+local fold_close = "\226\150\184" -- ▸ U+25B8 BLACK RIGHT-POINTING SMALL TRIANGLE
 opt.fillchars = vim.fn.has("nvim-0.12") == 1
-  and { eob = " ", foldinner = " ", foldopen = "", foldclose = "", fold = " ", foldsep = " " }
-  or { eob = " ", foldopen = "", foldclose = "", fold = " ", foldsep = " " }
+  and { eob = " ", foldinner = " ", foldopen = fold_open, foldclose = fold_close, fold = " ", foldsep = " " }
+  or { eob = " ", foldopen = fold_open, foldclose = fold_close, fold = " ", foldsep = " " }
 opt.inccommand = "split"
 opt.jumpoptions = "stack,view"
 
