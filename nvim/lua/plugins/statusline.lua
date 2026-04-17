@@ -45,6 +45,18 @@ return {
           color = { fg = "#FFC799" },
         },
         {
+          function()
+            local clients = vim.lsp.get_clients({ bufnr = 0 })
+            if #clients == 0 then return "" end
+            local status = vim.lsp.status()
+            if status ~= "" then return status end
+            local names = {}
+            for _, c in ipairs(clients) do table.insert(names, c.name) end
+            return "  " .. table.concat(names, " ")
+          end,
+          cond = function() return #vim.lsp.get_clients({ bufnr = 0 }) > 0 end,
+        },
+        {
           "overseer",
           label = "",
           colored = true,

@@ -18,7 +18,7 @@ return {
       backend = "nui",
     },
     lsp = {
-      progress = { enabled = true, view = "mini" },
+      progress = { enabled = false },
       hover = { enabled = false },
       signature = { enabled = false },
       override = {
