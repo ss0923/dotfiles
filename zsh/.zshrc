@@ -97,7 +97,14 @@ alias https='xh --https'
 alias watch='viddy'
 alias pst='procs --tree'
 alias lg='lazygit'
-alias clear='command clear && tmux clear-history 2>/dev/null'
+# `clear` as a function so we can also prime _first_prompt=1 — this makes the
+# next precmd take the full-redraw branch of _prompt_newline, avoiding the blank
+# line that would otherwise sit above the prompt after clearing.
+clear() {
+  command clear
+  [[ -n "$TMUX" ]] && command tmux clear-history 2>/dev/null
+  _first_prompt=1
+}
 alias cl='clear'
 alias clear-history='echo "" > "$HISTFILE" && fc -p "$HISTFILE" && echo "History cleared."'
 alias src='source'
