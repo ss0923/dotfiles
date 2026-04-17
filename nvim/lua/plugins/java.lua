@@ -48,6 +48,11 @@ return {
           },
           root_dir = root_dir,
           capabilities = require("blink.cmp").get_lsp_capabilities(),
+          handlers = {
+            ["language/status"] = function() end,
+            ["language/progressReport"] = function() end,
+            ["language/eventNotification"] = function() end,
+          },
           settings = {
             java = {
               configuration = {
@@ -78,6 +83,11 @@ return {
           },
           init_options = {
             bundles = bundles,
+            extendedClientCapabilities = vim.tbl_deep_extend(
+              "force",
+              jdtls.extendedClientCapabilities,
+              { progressReportProvider = false }
+            ),
           },
           on_attach = function(_, bufnr)
             jdtls.setup_dap({ hotcodereplace = "auto", config_overrides = {} })
