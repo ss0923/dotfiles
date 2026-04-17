@@ -1,0 +1,186 @@
+% mise, version manager
+
+# List installed tool versions
+mise list
+
+# Install a tool
+mise install <tool>@<version>
+
+# Use a tool version in current directory
+mise use <tool>@<version>
+
+# Use a tool version globally
+mise use -g <tool>@<version>
+
+# List available versions for a tool
+mise ls-remote <tool>
+
+# Upgrade all tools
+mise upgrade
+
+# Show current tool versions
+mise current
+
+# Prune unused versions
+mise prune
+
+# Run a task defined in mise config
+mise run <task>
+
+# List available tasks
+mise tasks
+
+# Trust a config directory
+mise trust
+
+$ tool: echo -e 'node\npython\nruby\ngo\nrust\njava\nerlang\nelixir\nbun\ndeno'
+$ task: mise tasks 2>/dev/null | awk '{print $1}'
+
+% just, task runner
+
+# List available recipes
+just --list
+
+# Run a recipe
+just <recipe>
+
+# Run recipe with arguments
+just <recipe> <args>
+
+# Run recipe from specific justfile
+just -f <justfile> <recipe>
+
+# Show recipe source
+just --show <recipe>
+
+# Evaluate and print all variables
+just --evaluate
+
+# Choose a recipe interactively (with fzf)
+just --choose
+
+# Dump justfile as JSON
+just --dump --dump-format json
+
+$ recipe: just --list --list-heading '' --list-prefix '' 2>/dev/null | awk '{print $1}'
+$ justfile: fd -g '{justfile,Justfile,.justfile}' --max-depth 3
+
+% watchexec, file watcher
+
+# Watch and run command on file changes
+watchexec -- <command>
+
+# Watch specific extensions
+watchexec -e <exts> -- <command>
+
+# Watch specific directory
+watchexec -w <dir> -- <command>
+
+# Restart long-running process on changes
+watchexec -r -- <command>
+
+# Clear screen before each run
+watchexec -c -- <command>
+
+# Ignore specific patterns
+watchexec -i '<pattern>' -- <command>
+
+# Debounce (wait ms after last change)
+watchexec --debounce <ms> -- <command>
+
+$ exts: echo -e 'ts,js\nrs\ngo\npy\nsvelte,ts'
+$ ms: echo -e '300\n500\n1000\n2000'
+
+% viddy, watch
+
+# Watch a command with differences highlighted
+viddy '<command>'
+
+# Watch with specific interval (seconds)
+viddy -n <interval> '<command>'
+
+# Watch with permanent diff mode
+viddy -d '<command>'
+
+# Watch and exit on changes
+viddy --differences=exit '<command>'
+
+$ interval: echo -e '1\n2\n5\n10'
+
+% mprocs, multi-process
+
+# Run multiple commands
+mprocs '<cmd1>' '<cmd2>'
+
+# Run from mprocs config file
+mprocs --config <config>
+
+$ config: fd -g 'mprocs.yaml' -g 'mprocs.yml' --max-depth 3
+
+% hadolint, dockerfile
+
+# Lint a Dockerfile
+hadolint <dockerfile>
+
+# Lint with specific trusted registries
+hadolint --trusted-registry <registry> <dockerfile>
+
+# Lint from stdin
+cat <dockerfile> | hadolint -
+
+# Ignore specific rules
+hadolint --ignore <rule> <dockerfile>
+
+$ dockerfile: fd -g 'Dockerfile*' --max-depth 3
+$ rule: echo -e 'DL3008\nDL3009\nDL3015\nDL3018\nDL3059\nSC2086'
+
+% lychee, link checker
+
+# Check links in a file
+lychee <file>
+
+# Check all links in directory
+lychee '<glob>'
+
+# Check links excluding a pattern
+lychee --exclude '<pattern>' <file>
+
+# Check links with max concurrency
+lychee --max-concurrency <n> '<glob>'
+
+# Check links and output as markdown
+lychee --format markdown '<glob>'
+
+$ file: fd -e md -e html --max-depth 3
+$ glob: echo -e './**/*.md\n./**/*.html\nREADME.md'
+
+% grex, regex
+
+# Generate regex from test strings
+grex '<string1>' '<string2>' '<string3>'
+
+# Generate regex with case-insensitive flag
+grex -i '<string1>' '<string2>'
+
+# Generate regex allowing digits
+grex -d '<string1>' '<string2>'
+
+# Generate regex allowing whitespace
+grex -s '<string1>' '<string2>'
+
+% glow, markdown
+
+# Render markdown file in terminal
+glow <file>
+
+# Render with pager
+glow -p <file>
+
+# Render with specific width
+glow -w <width> <file>
+
+# Browse markdown files interactively
+glow
+
+$ file: fd -e md --max-depth 3
+$ width: echo -e '80\n100\n120'

@@ -1,0 +1,43 @@
+% navi
+
+# Open navi interactively
+navi
+
+# Search for a specific query
+navi --query '<query>'
+
+# Filter by cheatsheet tag
+navi --tag-rules '<tag>'
+
+# Add a community cheatsheet repo
+navi repo add <repo>
+
+# Browse available repos
+navi repo browse
+
+# Show navi config example
+navi info config-example
+
+# Show navi cheat path
+navi info cheats-path
+
+# Edit a cheatsheet file
+${EDITOR:-nvim} <cheat_file>
+
+# Writing cheats: section header
+; % tag_name
+
+# Writing cheats: comment (shown in search)
+; # Description of what the command does
+
+# Writing cheats: variable with options
+; $ variable: echo -e 'opt1\nopt2\nopt3'
+
+# Writing cheats: variable from command
+; $ variable: command --- --column 1
+
+# Writing cheats: multi-select variable
+; $ variable: command --- --multi true
+
+$ cheat_file: fd -e cheat -t f . ~/.config/navi/custom 2>/dev/null
+$ repo: echo -e 'denisidoro/cheats\ndenisidoro/navi-tldr-pages'

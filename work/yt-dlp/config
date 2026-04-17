@@ -1,0 +1,9 @@
+-f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]"
+--merge-output-format mp4
+--embed-thumbnail
+--embed-metadata
+--sub-lang en
+--embed-subs
+--no-overwrites
+-P "~/media/_Videos"
+-o "%(title)s.%(ext)s"

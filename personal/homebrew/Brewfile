@@ -1,0 +1,163 @@
+# taps
+tap "clojure/tools"
+tap "coursier/formulas"
+tap "FelixKratz/formulae"
+tap "kgarner7/feishin"
+tap "radiosilence/koan"
+tap "morantron/tmux-fingers"
+tap "nikitabobko/tap"
+
+# shell
+brew "bash"
+
+# core cli
+brew "bat"
+brew "chezmoi"
+brew "cmark-gfm"
+brew "choose-rust"
+brew "duf"
+brew "dust"
+brew "eza"
+brew "fastfetch"
+brew "fd"
+brew "fzf"
+brew "jq"
+brew "navi"
+brew "ouch"
+brew "procs"
+brew "ripgrep"
+brew "sd"
+brew "sheldon"
+brew "sesh"
+brew "starship"
+brew "tlrc"
+brew "tmux"
+brew "morantron/tmux-fingers/tmux-fingers"
+brew "yazi"
+brew "yq"
+brew "zoxide"
+
+# git
+brew "difftastic"
+brew "git"
+brew "git-absorb"
+brew "git-delta"
+brew "git-lfs"
+brew "lazygit"
+
+# editor
+brew "lua"
+brew "luarocks"
+brew "neovim"
+brew "tree-sitter"
+brew "tree-sitter-cli"
+
+# development
+brew "deno"
+brew "gh"
+brew "glow"
+brew "grex"
+brew "hadolint"
+brew "just"
+brew "lazydocker"
+brew "lychee"
+brew "mise"
+brew "mprocs"
+brew "pipx"
+brew "shaderc"
+brew "sops"
+brew "tokei"
+brew "viddy"
+brew "watchexec"
+# languages
+brew "clojure/tools/clojure"
+brew "coursier/formulas/coursier"
+brew "crystal"
+brew "foundry"
+brew "fvm"
+brew "gleam"
+brew "leiningen"
+brew "nixfmt"
+brew "opam"
+brew "php"
+brew "libyaml"
+brew "r"
+brew "rebar3"
+brew "swift-format"
+
+# database
+brew "lazysql"
+brew "postgresql@18"
+brew "valkey"
+
+# media
+brew "ffmpeg"
+brew "mpv"
+brew "newsboat"
+brew "radiosilence/koan/koan"
+brew "yt-dlp"
+
+# networking
+brew "doggo"
+brew "wget"
+brew "xh"
+
+# system
+brew "asimov"
+brew "coreutils"
+brew "btop"
+brew "mas"
+brew "ghostscript"
+brew "gnupg"
+brew "hyperfine"
+brew "age"
+brew "shellcheck"
+brew "imagemagick"
+brew "pinentry-mac"
+
+# window management
+brew "FelixKratz/formulae/borders"
+
+# casks
+cask "alt-tab"
+cask "basictex"
+cask "bitwarden"
+cask "cleanshot"
+cask "clop"
+cask "dotnet-sdk"
+cask "font-iosevka-nerd-font"
+cask "font-symbols-only-nerd-font"
+cask "ghostty"
+cask "gimp"
+cask "hazeover"
+cask "figma"
+cask "iina"
+cask "jordanbaird-ice"
+cask "karabiner-elements"
+cask "keyboardcleantool"
+cask "keycastr"
+cask "livebook"
+cask "lo-rain"
+cask "logi-options+"
+cask "lunar"
+cask "medis"
+cask "nikitabobko/tap/aerospace"
+cask "notchnook"
+cask "obs"
+cask "obsidian"
+cask "postico"
+cask "raycast"
+cask "sensiblesidebuttons"
+cask "sioyek", args: { no_quarantine: true }  # unnotarized — skip gatekeeper quarantine
+cask "zen"
+cask "discord"
+cask "kgarner7/feishin/feishin"
+cask "telegram-desktop"
+cask "wispr-flow"
+# mac app store
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Reeder", id: 1529448980
+mas "WireGuard", id: 1451685025
+mas "iA Writer", id: 775737590

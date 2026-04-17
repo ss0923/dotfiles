@@ -1,0 +1,61 @@
+gui:
+  nerdFontsVersion: "3"
+  theme:
+    activeBorderColor:
+      - "#ffc799"
+      - bold
+    inactiveBorderColor:
+      - "#505050"
+    optionsTextColor:
+      - "#99ffe4"
+    selectedLineBgColor:
+      - "#232323"
+    defaultFgColor:
+      - "#ffffff"
+    unstagedChangesColor:
+      - "#ff8080"
+    searchingActiveBorderColor:
+      - "#ffc799"
+      - bold
+    cherryPickedCommitBgColor:
+      - "#ffcfa8"
+    cherryPickedCommitFgColor:
+      - "#99ffe4"
+git:
+  overrideGpg: false
+  pagers:
+    - pager: "delta --paging=never"
+customCommands:
+  - key: "C"
+    context: "files"
+    description: "Conventional commit"
+    prompts:
+      - type: "menu"
+        title: "Type"
+        key: "Type"
+        options:
+          - name: "feat"
+            value: "feat"
+          - name: "fix"
+            value: "fix"
+          - name: "chore"
+            value: "chore"
+          - name: "refactor"
+            value: "refactor"
+          - name: "docs"
+            value: "docs"
+          - name: "test"
+            value: "test"
+          - name: "perf"
+            value: "perf"
+          - name: "ci"
+            value: "ci"
+      - type: "input"
+        title: "Scope (optional)"
+        key: "Scope"
+      - type: "input"
+        title: "Description"
+        key: "Description"
+    command: >-
+      git commit -m "{{.Form.Type}}{{if .Form.Scope}}({{.Form.Scope}}){{end}}: {{.Form.Description}}"
+    loadingText: "Committing..."

@@ -1,0 +1,66 @@
+% chezmoi
+
+# Add a file to chezmoi source
+chezmoi add <file>
+
+# Add a directory to chezmoi source
+chezmoi add <dir>
+
+# Apply chezmoi source to home directory
+chezmoi apply
+
+# Apply with dry run (preview changes)
+chezmoi apply --dry-run --verbose
+
+# Show diff between source and destination
+chezmoi diff
+
+# Edit a managed file in source
+chezmoi edit <managed_file>
+
+# List all managed files
+chezmoi managed
+
+# List managed files matching a pattern
+chezmoi managed --include=files | grep '<pattern>'
+
+# Re-add modified files back to source
+chezmoi re-add
+
+# Show chezmoi status (changed files)
+chezmoi status
+
+# Run chezmoi doctor to check setup
+chezmoi doctor
+
+# View source path for a target file
+chezmoi source-path <file>
+
+# View target state for a file
+chezmoi cat <file>
+
+# Add a template file
+chezmoi add --template <file>
+
+# Execute a template for debugging
+chezmoi execute-template '{{ .chezmoi.os }}'
+
+# Forget a file (stop managing)
+chezmoi forget <managed_file>
+
+# Update from remote source (pull + apply)
+chezmoi update
+
+# Initialize chezmoi from repo
+chezmoi init <repo_url>
+
+# Show chezmoi data (template variables)
+chezmoi data
+
+# Merge changes interactively
+chezmoi merge <file>
+
+# Archive managed files
+chezmoi archive --output=<output>.tar.gz
+
+$ managed_file: chezmoi managed --include=files 2>/dev/null

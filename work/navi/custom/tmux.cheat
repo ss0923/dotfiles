@@ -1,0 +1,113 @@
+% tmux
+
+; prefix is C-Space
+
+# New session with name
+tmux new-session -s <session_name>
+
+# Attach to existing session
+tmux attach-session -t <session>
+
+# Kill a session
+tmux kill-session -t <session>
+
+# Kill all sessions except current
+tmux kill-session -a
+
+# List sessions
+tmux list-sessions
+
+# Detach from current session (prefix d)
+; C-Space d
+
+# Switch session with fzf popup (prefix s)
+; C-Space s
+
+# New window (prefix c)
+; C-Space c
+
+# Next window (prefix n)
+; C-Space n
+
+# Previous window (prefix p)
+; C-Space p
+
+# Last window (prefix Tab)
+; C-Space Tab
+
+# Rename window (prefix ,)
+; C-Space ,
+
+# Split pane vertically (prefix -)
+; C-Space -
+
+# Split pane horizontally (prefix \)
+; C-Space \
+
+# Zoom pane toggle (prefix z)
+; C-Space z
+
+# Kill pane (prefix x)
+; C-Space x
+
+# Kill window (prefix X)
+; C-Space X
+
+# Swap pane down (prefix >)
+; C-Space >
+
+# Swap pane up (prefix <)
+; C-Space <
+
+# Break pane to own window (prefix !)
+; C-Space !
+
+# Resize pane left (prefix H)
+; C-Space H (repeatable)
+
+# Resize pane down (prefix J)
+; C-Space J (repeatable)
+
+# Resize pane up (prefix K)
+; C-Space K (repeatable)
+
+# Resize pane right (prefix L)
+; C-Space L (repeatable)
+
+# Enter copy mode (prefix [)
+; C-Space [
+
+# Open lazygit popup (prefix g)
+; C-Space g
+
+# Open scratch session popup (prefix `)
+; C-Space `
+
+# Reload tmux config (prefix r)
+; C-Space r
+
+# Clear pane and scrollback (prefix b)
+; C-Space b
+
+# Send a command to a specific pane
+tmux send-keys -t <session>:<window>.<pane> '<command>' Enter
+
+# Capture pane contents to file
+tmux capture-pane -p -t <session>:<window> > <output_file>
+
+# Move window to a different index
+tmux move-window -t <index>
+
+# Swap windows
+tmux swap-window -s <source> -t <target>
+
+# Set option for session
+tmux set-option <option> <value>
+
+# List all key bindings
+tmux list-keys
+
+# Show all options
+tmux show-options -g
+
+$ session: tmux list-sessions -F '#{session_name}' 2>/dev/null

@@ -1,0 +1,5 @@
+--theme="ansi"
+--italic-text=always
+--style="numbers,changes"
+--map-syntax="*.toml.tmpl:TOML"
+--map-syntax="*.sh.tmpl:Bash"
