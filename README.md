@@ -9,7 +9,7 @@ This repo is a **generated showcase** — a public rendering of my private chezm
 The source of truth is my private `chezmoi` repo. To refresh this mirror from either Mac:
 
 ```sh
-~/dev/other/dotfiles/scripts/render.sh
+~/dev/personal/dotfiles/scripts/render.sh
 ```
 
 Then review the diff and commit.

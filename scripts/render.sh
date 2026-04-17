@@ -9,7 +9,7 @@
 
 set -euo pipefail
 
-PUB_ROOT="${PUB_ROOT:-$HOME/dev/other/dotfiles}"
+PUB_ROOT="${PUB_ROOT:-$HOME/dev/personal/dotfiles}"
 CHEZMOI_SRC="$HOME/.local/share/chezmoi"
 
 stage="$(mktemp -d -t chezmoi-render.XXXXXX)"
