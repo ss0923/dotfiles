@@ -51,6 +51,8 @@ defaults write -g PMPrintingExpandedStateForPrint2 -bool true
 
 # mission control
 defaults write com.apple.dock mru-spaces -bool false
+defaults write -g AppleSpacesSwitchOnActivate -bool true
+defaults write com.apple.dock expose-group-apps -bool true
 
 # crash reporter
 defaults write com.apple.CrashReporter DialogType -string notification
