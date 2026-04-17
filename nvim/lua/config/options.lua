@@ -58,10 +58,14 @@ opt.timeoutlen = 300
 opt.ttimeout = true
 opt.ttimeoutlen = 10
 opt.guicursor = "n-v-sm:block,i-ci-ve-c:ver25,r-cr-o:hor20"
-opt.fillchars = vim.fn.has("nvim-0.12") == 1 and { eob = " ", foldinner = " " } or { eob = " " }
+opt.fillchars = vim.fn.has("nvim-0.12") == 1
+  and { eob = " ", foldinner = " ", foldopen = "", foldclose = "", fold = " ", foldsep = " " }
+  or { eob = " ", foldopen = "", foldclose = "", fold = " ", foldsep = " " }
 opt.inccommand = "split"
 opt.jumpoptions = "stack,view"
 
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldenable = true
