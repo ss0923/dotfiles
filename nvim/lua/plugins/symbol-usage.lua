@@ -10,7 +10,13 @@ return {
       return {
         vt_position = "end_of_line",
         hl = { link = "Comment" },
-        kinds = { SymbolKind.Function, SymbolKind.Method },
+        kinds = {
+          SymbolKind.Function,
+          SymbolKind.Method,
+          SymbolKind.Class,
+          SymbolKind.Interface,
+          SymbolKind.Struct,
+        },
         references = { enabled = true, include_declaration = false },
         implementation = { enabled = true },
         definition = { enabled = false },
