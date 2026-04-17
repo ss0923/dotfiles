@@ -40,7 +40,7 @@ return {
       map("n", "<leader>ghb", function()
         gs.blame_line({ full = true, ignore_whitespace = true, extra_opts = { "-M", "-C" } })
       end, { desc = "Blame line (with move/copy detection)" })
-      map("n", "<leader>gB", gs.blame, { desc = "Blame file (split)" })
+      map("n", "<leader>gb", gs.blame, { desc = "Blame file (split)" })
       map("v", "<leader>ghB", function()
         local s, e = vim.fn.line("."), vim.fn.line("v")
         if s > e then s, e = e, s end
