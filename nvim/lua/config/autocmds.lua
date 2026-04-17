@@ -46,3 +46,18 @@ autocmd("VimLeave", {
     io.stdout:write("\x1b[3 q")
   end,
 })
+
+-- Detach any LSP client from scratch / preview buffers (buftype != "").
+-- Servers like jdtls and spring-boot-ls resolve the buffer URI during
+-- didOpen/semantic-tokens/inlay-hints handlers and crash on empty `file://`
+-- URIs that scratch buffers produce (gitsigns previews, trouble, neotest, etc.).
+-- Detaching immediately prevents the broken requests from firing.
+autocmd("LspAttach", {
+  group = augroup,
+  desc = "Detach LSPs from scratch/preview buffers",
+  callback = function(args)
+    if vim.bo[args.buf].buftype ~= "" then
+      pcall(vim.lsp.buf_detach_client, args.buf, args.data.client_id)
+    end
+  end,
+})
