@@ -7,8 +7,11 @@ return {
       if filetype == "" or buftype == "nofile" then
         return ""
       end
-      return { "treesitter", "indent" }
+      return { "lsp", "treesitter" }
     end,
+    close_fold_kinds_for_ft = {
+      default = { "imports", "comment" },
+    },
   },
   keys = {
     { "zR", function() require("ufo").openAllFolds() end, desc = "Open all folds" },
