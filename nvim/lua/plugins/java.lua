@@ -124,5 +124,20 @@ return {
     opts = {
       java_cmd = vim.fn.expand("~/.local/share/mise/installs/java/25/bin/java"),
     },
+    init = function()
+      -- spring-boot-ls wraps jdtls's semantic tokens and crashes with -32603
+      -- on scratch buffers (URI `file://` fails java.net.URI.create parsing).
+      -- Jdtls still provides the real highlighting, so disabling this capability
+      -- is zero-visible-impact. Canonical pattern (oil.nvim#435, rustaceanvim#135).
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("SpringBootDisableSemanticTokens", { clear = true }),
+        callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client and client.name == "spring-boot" then
+            client.server_capabilities.semanticTokensProvider = nil
+          end
+        end,
+      })
+    end,
   },
 }
