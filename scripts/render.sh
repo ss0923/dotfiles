@@ -69,6 +69,11 @@ render_variant() {
   # navi config — sanitize $HOME → ~
   sed "s|$HOME|~|g" "$stage/.config/navi/config.yaml" > "$out/navi/config.yaml"
 
+  # mise settings — sanitize $HOME → ~ (template renders absolute homeDir)
+  if [ -f "$out/mise/settings.toml" ]; then
+    sed -i '' "s|$HOME|~|g" "$out/mise/settings.toml"
+  fi
+
   # macOS defaults (from chezmoiscripts — scripts were excluded, so copy raw)
   mkdir -p "$out/macos"
   cp "$CHEZMOI_SRC/home/.chezmoiscripts/darwin/run_onchange_after_08-macos-defaults.sh" \
