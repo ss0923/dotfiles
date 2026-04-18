@@ -122,6 +122,7 @@ brew "FelixKratz/formulae/borders"
 
 # casks
 cask "basictex"
+cask "betterzip"
 cask "bitwarden"
 cask "cleanshot"
 cask "clop"
@@ -146,19 +147,20 @@ cask "nikitabobko/tap/aerospace"
 cask "notchnook"
 cask "obs"
 cask "obsidian"
+cask "openinterminal-lite"
 cask "postico"
+cask "qlmarkdown"
 cask "raycast"
 cask "sensiblesidebuttons"
 cask "sioyek", args: { no_quarantine: true }  # unnotarized — skip gatekeeper quarantine
+cask "syntax-highlight"
 cask "zen"
 cask "discord"
 cask "kgarner7/feishin/feishin"
 cask "telegram-desktop"
 cask "wispr-flow"
 # mac app store
-mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
 mas "Reeder", id: 1529448980
 mas "WireGuard", id: 1451685025
 mas "iA Writer", id: 775737590

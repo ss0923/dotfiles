@@ -111,6 +111,10 @@ alias cdc='cd ~ && clear'
 alias clear-history='echo "" > "$HISTFILE" && fc -p "$HISTFILE" && echo "History cleared."'
 alias src='source'
 
+# finder
+alias reveal='open -R'
+alias finder='open .'
+
 # git
 alias g='git'
 alias ga='git add'
