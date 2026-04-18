@@ -4,6 +4,7 @@ font-size = 18
 font-thicken = true
 
 theme = vesper
+macos-icon = chalkboard
 
 macos-titlebar-style = hidden
 window-padding-x = 20
