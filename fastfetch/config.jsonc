@@ -24,7 +24,7 @@
   },
   "modules": [
     { "type": "os", "format": "{pretty-name} {arch}" },
-    { "type": "host", "format": "MacBook Pro" },
+    { "type": "host", "format": "{name}" },
     { "type": "cpu", "format": "{name}" },
     { "type": "uptime", "format": "{days}d {hours}h" },
     "shell",
