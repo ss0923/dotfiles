@@ -105,6 +105,7 @@ clear() {
   [[ -n "$TMUX" ]] && command tmux clear-history 2>/dev/null
   _first_prompt=1
 }
+alias c='clear'
 alias cl='clear'
 alias cdc='cd ~ && clear'
 alias clear-history='echo "" > "$HISTFILE" && fc -p "$HISTFILE" && echo "History cleared."'
