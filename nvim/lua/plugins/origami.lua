@@ -7,10 +7,11 @@ return {
       enabled = true,
       foldmethodIfNeitherIsAvailable = "indent",
     },
-    autoFold = {
-      enabled = true,
-      kinds = { "imports" },
-    },
+    -- Import auto-folding is handled by our own early-fold path
+    -- (lua/config/fold_imports.lua + FileType autocmd), which folds before
+    -- the first paint. Origami's LSP-driven autoFold fires after LSP settles
+    -- and caused a visible cursor jump on slow servers (jdtls).
+    autoFold = { enabled = false },
     foldtext = {
       enabled = true,
       padding = { character = " ", width = 2 },
@@ -23,37 +24,6 @@ return {
     pauseFoldsOnSearch = true,
   },
   init = function()
-    -- Supplement to origami's autoFold: origami only hooks LspNotify didOpen,
-    -- which fires before slow LSPs (jdtls) have computed foldingRange for the buffer
-    -- (origami issue #52). Re-run native vim.lsp.foldclose on LSP progress "end"
-    -- events so imports fold once indexing completes. Per-buffer dedupe so we
-    -- don't refold after the user manually expands.
-    local autofolded = {}
-    local group = vim.api.nvim_create_augroup("OrigamiAutoFoldOnProgressEnd", { clear = true })
-    vim.api.nvim_create_autocmd("LspProgress", {
-      group = group,
-      callback = function(args)
-        local v = args.data and args.data.params and args.data.params.value
-        if not v or v.kind ~= "end" then return end
-        for _, win in ipairs(vim.api.nvim_list_wins()) do
-          local buf = vim.api.nvim_win_get_buf(win)
-          if not autofolded[buf] then
-            for _, c in ipairs(vim.lsp.get_clients({ bufnr = buf })) do
-              if c:supports_method("textDocument/foldingRange") then
-                pcall(vim.lsp.foldclose, "imports", win)
-                autofolded[buf] = true
-                break
-              end
-            end
-          end
-        end
-      end,
-    })
-    vim.api.nvim_create_autocmd("BufUnload", {
-      group = group,
-      callback = function(args) autofolded[args.buf] = nil end,
-    })
-
     vim.keymap.set("n", "K", function()
       local lnum = vim.fn.foldclosed(".")
       if lnum == -1 then

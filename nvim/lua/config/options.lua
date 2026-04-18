@@ -72,7 +72,7 @@ opt.inccommand = "split"
 opt.jumpoptions = "stack,view"
 
 opt.foldmethod = "expr"
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldexpr = "v:lua.require'config.fold_imports'.foldexpr(v:lnum)"
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldenable = true
