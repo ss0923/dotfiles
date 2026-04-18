@@ -245,7 +245,17 @@ return {
           map("gK", vim.lsp.buf.signature_help, "Signature help")
           map("<C-k>", vim.lsp.buf.signature_help, "Signature help", "i")
 
-          vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+          -- Inlay hints: skip scratch buffers + jdtls (known to return hints with
+          -- positions that break nvim's extmark placement in 0.12 — triggers the
+          -- "Decoration provider nvim.lsp.inlayhint" error popup during edits).
+          do
+            local c = vim.lsp.get_client_by_id(event.data.client_id)
+            if c and c:supports_method("textDocument/inlayHint")
+                and vim.bo[event.buf].buftype == ""
+                and c.name ~= "jdtls" then
+              vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+            end
+          end
           map("<leader>ti", function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }), { bufnr = event.buf })
           end, "Toggle inlay hints")

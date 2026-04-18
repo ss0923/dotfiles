@@ -9,6 +9,14 @@ return {
       topdelete = { text = "‾" },
       changedelete = { text = "~" },
     },
+    current_line_blame = false,
+    current_line_blame_opts = {
+      virt_text = true,
+      virt_text_pos = "right_align",
+      delay = 300,
+      ignore_whitespace = true,
+    },
+    current_line_blame_formatter = "<abbrev_sha> · <author>, <author_time:%R> · <summary>",
     on_attach = function(bufnr)
       local gs = require("gitsigns")
       local map = function(mode, l, r, opts)
