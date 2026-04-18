@@ -115,6 +115,7 @@ brew "shellcheck"
 brew "imagemagick"
 brew "pinentry-mac"
 brew "duti"
+brew "pre-commit"
 
 # window management
 brew "FelixKratz/formulae/borders"

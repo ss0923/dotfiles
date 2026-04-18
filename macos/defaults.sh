@@ -70,7 +70,7 @@ defaults write com.apple.universalaccess reduceMotion -bool true 2>/dev/null || 
 
 # screenshots
 mkdir -p ~/Screenshots
-defaults write com.apple.screencapture location -string "~/Screenshots"
+defaults write com.apple.screencapture location -string "$HOME/Screenshots"
 defaults write com.apple.screencapture type -string "png"
 
 # hot corners

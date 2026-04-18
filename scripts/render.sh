@@ -51,9 +51,10 @@ cp -r "$stage/.config/yazi"        "$PUB_ROOT/yazi"
 cp -r "$stage/.config/yt-dlp"      "$PUB_ROOT/yt-dlp"
 
 mkdir -p "$PUB_ROOT/zsh"
-cp "$stage/.zshrc"    "$PUB_ROOT/zsh/.zshrc"
-cp "$stage/.zshenv"   "$PUB_ROOT/zsh/.zshenv"
-cp "$stage/.zprofile" "$PUB_ROOT/zsh/.zprofile"
+cp "$stage/.zshenv"              "$PUB_ROOT/zsh/.zshenv.shim"
+cp "$stage/.config/zsh/.zshrc"   "$PUB_ROOT/zsh/.zshrc"
+cp "$stage/.config/zsh/.zshenv"  "$PUB_ROOT/zsh/.zshenv"
+cp "$stage/.config/zsh/.zprofile" "$PUB_ROOT/zsh/.zprofile"
 
 mkdir -p "$PUB_ROOT/git"
 sed 's|!.*/bin/gh|!gh|g' "$stage/.config/git/config" > "$PUB_ROOT/git/config"
