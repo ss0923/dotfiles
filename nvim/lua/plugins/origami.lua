@@ -19,7 +19,7 @@ return {
       diagnosticsCount = true,
       gitsignsCount = true,
     },
-    foldKeymaps = { setup = true },
+    foldKeymaps = { setup = true, closeOnlyOnFirstColumn = true },
     pauseFoldsOnSearch = true,
   },
   init = function()
