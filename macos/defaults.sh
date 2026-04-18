@@ -117,6 +117,13 @@ sudo pmset -a ttyskeepawake 1 2>/dev/null || true
 # dns
 sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 2>/dev/null || true
 
+# trackpad
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+
+# xcode
+defaults write com.apple.dt.Xcode IDEDerivedDataLocationStyle -int 1
+
 # restart
 killall Finder Dock SystemUIServer 2>/dev/null || true
 
