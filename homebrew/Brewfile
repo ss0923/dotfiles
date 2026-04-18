@@ -119,7 +119,6 @@ brew "pinentry-mac"
 brew "FelixKratz/formulae/borders"
 
 # casks
-cask "alt-tab"
 cask "basictex"
 cask "bitwarden"
 cask "cleanshot"
