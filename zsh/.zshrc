@@ -91,31 +91,7 @@ alias top='btop'
 alias vim='nvim'
 alias neovim='nvim'
 
-# `v` is a function (not an alias) so it can wire a tempfile for post-exit shell
-# actions (ranger/yazi/vifm-style). Inside nvim, `:Qcdc` / `:WQcdc` writes to
-# the sentinel and after nvim exits this wrapper runs the requested action.
-v() {
-  # Inside nvim's :terminal — skip wrapping so nested nvim can't write to the
-  # outer shell's sentinel.
-  if [[ -n "$NVIM" ]]; then
-    command nvim "$@"
-    return
-  fi
-  local tmp rc action
-  tmp=$(mktemp -t nvim-post.XXXXXX) || { command nvim "$@"; return $?; }
-  trap 'rm -f -- "$tmp"' EXIT INT TERM HUP
-  NVIM_POST_FILE=$tmp command nvim "$@"
-  rc=$?
-  if [[ -s $tmp ]]; then
-    action=$(<"$tmp")
-    case $action in
-      cdc)   cdc ;;
-      cd:*)  builtin cd -- "${action#cd:}" ;;
-      cmd:*) eval "${action#cmd:}" ;;
-    esac
-  fi
-  return $rc
-}
+alias v='nvim'
 alias http='xh'
 alias https='xh --https'
 alias watch='viddy'
