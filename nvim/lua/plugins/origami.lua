@@ -7,10 +7,9 @@ return {
       enabled = true,
       foldmethodIfNeitherIsAvailable = "indent",
     },
-    -- Import auto-folding is handled by our own early-fold path
-    -- (lua/config/fold_imports.lua + FileType autocmd), which folds before
-    -- the first paint. Origami's LSP-driven autoFold fires after LSP settles
-    -- and caused a visible cursor jump on slow servers (jdtls).
+    -- Imports intentionally left unfolded on open — closing them after LSP
+    -- settles (origami's default behavior) caused a visible cursor jump on
+    -- slow servers (jdtls). Use `zc` / `zM` manually if needed.
     autoFold = { enabled = false },
     foldtext = {
       enabled = true,

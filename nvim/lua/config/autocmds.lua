@@ -33,15 +33,6 @@ autocmd("FileType", {
   end,
 })
 
-autocmd("FileType", {
-  group = augroup,
-  desc = "Pre-fold imports before first paint (no cursor jump when LSP later settles)",
-  pattern = require("config.fold_imports").supported_filetypes,
-  callback = function(args)
-    require("config.fold_imports").close_import_fold(args.buf)
-  end,
-})
-
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = augroup,
   desc = "Check for external file changes",
