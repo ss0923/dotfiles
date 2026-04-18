@@ -114,6 +114,7 @@ brew "age"
 brew "shellcheck"
 brew "imagemagick"
 brew "pinentry-mac"
+brew "duti"
 
 # window management
 brew "FelixKratz/formulae/borders"
