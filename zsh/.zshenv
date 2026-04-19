@@ -35,6 +35,8 @@ export MANROFFOPT="-c"
 
 export PNPM_HOME="$HOME/.local/share/pnpm"
 
+export GPG_TTY="$(tty 2>/dev/null)"
+
 # Claude Code: pin effort level to max. Env var is authoritative (settings.json
 # `effortLevel: "max"` has known persistence bugs — env var takes precedence).
 export CLAUDE_CODE_EFFORT_LEVEL=max

@@ -107,3 +107,9 @@
 [credential "https://gist.github.com"]
 	helper =
 	helper = !gh auth git-credential
+
+[includeIf "gitdir:~/dev/personal/"]
+	path = ~/.config/git/config-personal
+
+[includeIf "gitdir:~/dev/manifest/"]
+	path = ~/.config/git/config-manifest
