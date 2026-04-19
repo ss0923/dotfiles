@@ -30,8 +30,13 @@ return {
       require("nvim-dap-virtual-text").setup({})
       dapui.setup()
       dap.listeners.after.event_initialized["dapui_config"] = dapui.open
-      dap.listeners.before.event_terminated["dapui_config"] = dapui.close
-      dap.listeners.before.event_exited["dapui_config"] = dapui.close
+      dap.listeners.before.event_terminated["dapui_summary"] = function(_, body)
+        local code = body and body.exitCode
+        vim.notify(
+          "DAP session ended" .. (code and (" (exit " .. code .. ")") or "") .. ". <leader>du to close UI.",
+          vim.log.levels.INFO
+        )
+      end
 
       -- js, ts
       dap.adapters["pwa-node"] = {

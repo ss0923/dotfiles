@@ -36,7 +36,8 @@ return {
       vim.list_extend(bundles, require("spring_boot").java_extensions())
 
       local function start_jdtls()
-        local root_dir = vim.fs.root(0, { "gradlew", "mvnw", "pom.xml", "build.gradle", ".git" })
+        local root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew", "settings.gradle", "settings.gradle.kts" })
+          or vim.fs.root(0, { "pom.xml", "build.gradle", "build.gradle.kts", "build.xml" })
         local project_name = root_dir and vim.fn.fnamemodify(root_dir, ":t") or "default"
         local workspace_dir = vim.fn.stdpath("cache") .. "/jdtls-workspace/" .. project_name
 
