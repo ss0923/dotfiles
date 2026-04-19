@@ -116,6 +116,7 @@ brew "imagemagick"
 brew "pinentry-mac"
 brew "duti"
 brew "pre-commit"
+brew "wireguard-tools"
 
 # window management
 brew "FelixKratz/formulae/borders"
