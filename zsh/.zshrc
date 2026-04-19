@@ -545,7 +545,8 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
 # prompt hooks
-_preexec_newline() { print }
+_cmd_ran=0
+_preexec_newline() { _cmd_ran=1; print }
 preexec_functions=(${preexec_functions:#_preexec_newline})
 preexec_functions=(_preexec_newline $preexec_functions)
 
@@ -555,7 +556,8 @@ _prompt_newline() {
     unset _first_prompt
     printf '\e[H\e[2J\e[3J'
     [[ -n "$TMUX" ]] && command tmux clear-history 2>/dev/null
-  else
+  elif (( _cmd_ran )); then
+    _cmd_ran=0
     print
   fi
 }

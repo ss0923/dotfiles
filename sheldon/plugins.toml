@@ -4,7 +4,7 @@ shell = "zsh"
 github = "romkatv/zsh-defer"
 
 [templates]
-defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
+defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer -m -p -r source \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
 fpath = "fpath=(\"{{ dir }}\" $fpath)\n"
 
 [plugins.zsh-completions]
