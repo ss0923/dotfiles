@@ -55,6 +55,9 @@
 	hyperlinks = true
 	hyperlinks-file-link-format = "file://{path}:{line}"
 
+[delta "no-side-by-side"]
+	side-by-side = false
+
 [merge]
 	conflictstyle = zdiff3
 
