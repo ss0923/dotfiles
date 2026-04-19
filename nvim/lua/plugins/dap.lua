@@ -40,8 +40,35 @@ return {
       local mason_path = vim.fn.stdpath("data") .. "/mason/packages"
 
       require("nvim-dap-virtual-text").setup({})
+
+      vim.api.nvim_set_hl(0, "DapBreakpointLine", { bg = "#3a1d1d", default = true })
+      vim.api.nvim_set_hl(0, "DapBreakpointConditionLine", { bg = "#3a2c1d", default = true })
+      vim.api.nvim_set_hl(0, "DapLogPointLine", { bg = "#1d2b3a", default = true })
+      vim.api.nvim_set_hl(0, "DapStoppedLine", { bg = "#3a3a1d", default = true })
+
+      vim.fn.sign_define("DapBreakpoint", {
+        text = "●", texthl = "DiagnosticError", linehl = "DapBreakpointLine", numhl = "DiagnosticError",
+      })
+      vim.fn.sign_define("DapBreakpointCondition", {
+        text = "◆", texthl = "DiagnosticWarn", linehl = "DapBreakpointConditionLine", numhl = "DiagnosticWarn",
+      })
+      vim.fn.sign_define("DapLogPoint", {
+        text = "◉", texthl = "DiagnosticInfo", linehl = "DapLogPointLine", numhl = "DiagnosticInfo",
+      })
+      vim.fn.sign_define("DapStopped", {
+        text = "▶", texthl = "DiagnosticWarn", linehl = "DapStoppedLine", numhl = "DiagnosticWarn",
+      })
+      vim.fn.sign_define("DapBreakpointRejected", {
+        text = "⊘", texthl = "Comment", linehl = "", numhl = "Comment",
+      })
+
       dapui.setup({
         layouts = {
+          {
+            elements = { "console" },
+            size = 0.30,
+            position = "bottom",
+          },
           {
             elements = {
               { id = "scopes", size = 0.40 },
@@ -51,11 +78,6 @@ return {
             },
             size = 50,
             position = "left",
-          },
-          {
-            elements = { "console" },
-            size = 0.30,
-            position = "bottom",
           },
         },
         floating = {
@@ -68,6 +90,17 @@ return {
           max_type_length = 100,
           max_value_lines = 100,
         },
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "dap-repl", "dapui_console" },
+        callback = function()
+          vim.opt_local.wrap = true
+          vim.opt_local.linebreak = true
+          vim.opt_local.number = false
+          vim.opt_local.relativenumber = false
+          vim.opt_local.signcolumn = "no"
+        end,
       })
       dap.listeners.after.event_initialized["dapui_config"] = dapui.open
       dap.listeners.before.event_terminated["dapui_summary"] = function(_, body)
