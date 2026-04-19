@@ -39,6 +39,11 @@ return {
           },
         },
       },
+      sources = {
+        explorer = {
+          layout = { preset = "sidebar", layout = { width = 50, min_width = 50 } },
+        },
+      },
     },
     indent = {
       enabled = true,
