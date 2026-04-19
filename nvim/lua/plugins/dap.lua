@@ -21,6 +21,18 @@ return {
       { "<leader>dl", function() require("dap").run_last() end, desc = "Run last" },
       { "<leader>du", function() require("dapui").toggle() end, desc = "Toggle DAP UI" },
       { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = { "n", "v" } },
+      {
+        "<leader>dF",
+        function()
+          require("dapui").float_element("console", {
+            width = math.floor(vim.o.columns * 0.9),
+            height = math.floor(vim.o.lines * 0.9),
+            enter = true,
+            position = "center",
+          })
+        end,
+        desc = "Float console (near fullscreen)",
+      },
     },
     config = function()
       local dap = require("dap")
@@ -28,7 +40,35 @@ return {
       local mason_path = vim.fn.stdpath("data") .. "/mason/packages"
 
       require("nvim-dap-virtual-text").setup({})
-      dapui.setup()
+      dapui.setup({
+        layouts = {
+          {
+            elements = {
+              { id = "scopes", size = 0.40 },
+              { id = "stacks", size = 0.25 },
+              { id = "breakpoints", size = 0.20 },
+              { id = "watches", size = 0.15 },
+            },
+            size = 50,
+            position = "left",
+          },
+          {
+            elements = { "console" },
+            size = 0.30,
+            position = "bottom",
+          },
+        },
+        floating = {
+          max_height = 0.9,
+          max_width = 0.9,
+          border = "rounded",
+          mappings = { close = { "q", "<Esc>" } },
+        },
+        render = {
+          max_type_length = 100,
+          max_value_lines = 100,
+        },
+      })
       dap.listeners.after.event_initialized["dapui_config"] = dapui.open
       dap.listeners.before.event_terminated["dapui_summary"] = function(_, body)
         local code = body and body.exitCode
