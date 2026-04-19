@@ -24,6 +24,7 @@ export ANSIBLE_HOME="$XDG_CONFIG_HOME/ansible"
 export GOBIN="$HOME/.local/bin"
 export GOPATH="$XDG_DATA_HOME/go"
 export GOMODCACHE="$XDG_DATA_HOME/go/pkg/mod"
+export COLIMA_HOME="$HOME/.colima"
 
 # zsh state → xdg
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
