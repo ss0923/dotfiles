@@ -69,8 +69,11 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 defaults write com.apple.universalaccess reduceMotion -bool true 2>/dev/null || true
 
 # screenshots
-defaults delete com.apple.screencapture location 2>/dev/null || true
+mkdir -p "$HOME/Pictures/CleanShot"
+defaults write com.apple.screencapture location "$HOME/Pictures/CleanShot"
 defaults write com.apple.screencapture type -string "png"
+defaults write com.apple.screencapture disable-shadow -bool true
+defaults write com.apple.screencapture show-thumbnail -bool false
 
 # hot corners
 defaults write com.apple.dock wvous-tl-corner -int 2
