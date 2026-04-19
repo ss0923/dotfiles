@@ -50,3 +50,5 @@ path=(
   $path
 )
 export PI_HARDWARE_CURSOR=1
+
+[ -f "$HOME/.config/zsh/.zshenv.local" ] && source "$HOME/.config/zsh/.zshenv.local"
