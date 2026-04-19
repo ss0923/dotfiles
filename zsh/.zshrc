@@ -10,7 +10,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 eval "$(sheldon source)"
 
 AUTO_NOTIFY_THRESHOLD=30
-AUTO_NOTIFY_IGNORE=("v" "vim" "nvim" "less" "more" "man" "top" "htop" "btm" "ssh" "tmux" "docker" "lazygit" "yazi" "claude" "navi" "watch" "tail" "bat")
+AUTO_NOTIFY_IGNORE=("v" "vim" "nvim" "less" "more" "man" "top" "htop" "btm" "ssh" "tmux" "docker" "lazygit" "lazydocker" "yazi" "claude" "navi" "watch" "tail" "bat")
 
 if [[ -n "$TMUX" ]] && (( $+functions[_auto_notify_message] )); then
     eval "original_$(declare -f _auto_notify_message)"
