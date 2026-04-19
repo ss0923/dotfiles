@@ -117,6 +117,7 @@ brew "pinentry-mac"
 brew "duti"
 brew "pre-commit"
 brew "wireguard-tools"
+brew "syncthing"
 
 # window management
 brew "FelixKratz/formulae/borders"
