@@ -41,6 +41,8 @@ export GPG_TTY="$(tty 2>/dev/null)"
 # `effortLevel: "max"` has known persistence bugs — env var takes precedence).
 export CLAUDE_CODE_EFFORT_LEVEL=max
 
+export YARN_NPM_AUTH_TOKEN=$(grep '_authToken' ~/.npmrc 2>/dev/null | cut -d= -f2)
+
 typeset -U path
 path=(
   "$HOME/.local/bin"
