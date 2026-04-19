@@ -91,6 +91,7 @@ return {
           },
           on_attach = function(_, bufnr)
             jdtls.setup_dap({ hotcodereplace = "auto", config_overrides = {} })
+            require("jdtls.dap").setup_dap_main_class_configs()
 
             local map = function(keys, func, desc)
               vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "Java: " .. desc })
