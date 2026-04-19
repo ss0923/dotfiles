@@ -583,9 +583,9 @@ export PATH="$HOME/fvm/default/bin:$PATH"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-[[ -f ~/.zshrc.private ]] && source ~/.zshrc.private
+[[ -f "$ZDOTDIR/.zshrc.private" ]] && source "$ZDOTDIR/.zshrc.private"
 
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+[[ -f "$ZDOTDIR/.zshrc.local" ]] && source "$ZDOTDIR/.zshrc.local"
 
 [[ -n "$ZSHRC_PROF" ]] && zprof || true
 
