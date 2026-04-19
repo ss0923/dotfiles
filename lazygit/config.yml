@@ -24,7 +24,8 @@ gui:
 git:
   overrideGpg: false
   pagers:
-    - pager: "delta --paging=never"
+    - pager: 'delta --paging=never --side-by-side=false --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"'
+    - pager: 'delta --paging=never --side-by-side --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"'
 customCommands:
   - key: "C"
     context: "files"
