@@ -32,6 +32,8 @@ return {
     },
     routes = {
       { filter = { event = "msg_show", kind = "", find = "written" }, opts = { skip = true } },
+      { filter = { event = "msg_show", find = "Decoration provider.*nvim%.lsp%.inlayhint" }, opts = { skip = true } },
+      { filter = { event = "notify", find = "Decoration provider.*nvim%.lsp%.inlayhint" }, opts = { skip = true } },
     },
   },
   keys = {
