@@ -11,6 +11,7 @@ return {
       { "<leader>x", group = "diagnostics" },
       { "<leader>a", group = "ai" },
       { "<leader>b", group = "buffer" },
+      { "<leader>h", group = "harpoon" },
       { "<leader>g", group = "git" },
       { "<leader>gh", group = "hunks" },
       { "<leader>q", group = "session" },
