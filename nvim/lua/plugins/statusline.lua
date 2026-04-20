@@ -12,7 +12,7 @@ return {
     sections = {
       lualine_a = { "mode" },
       lualine_b = {
-        { "filename", path = 4 },
+        "branch",
         {
           "diff",
           source = function()
@@ -28,27 +28,21 @@ return {
         },
         "diagnostics",
       },
-      lualine_c = {},
+      lualine_c = { { "filename", path = 1 } },
       lualine_x = {
         {
           ---@diagnostic disable-next-line: undefined-field
           function() return require("noice").api.status.mode.get() end,
           ---@diagnostic disable-next-line: undefined-field
           cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-          -- vesper
           color = { fg = "#FFC799" },
-          -- mono
-          -- color = { fg = "#EBEBEB" },
         },
         {
           ---@diagnostic disable-next-line: undefined-field
           function() return require("noice").api.status.search.get() end,
           ---@diagnostic disable-next-line: undefined-field
           cond = function() return package.loaded["noice"] and require("noice").api.status.search.has() end,
-          -- vesper
           color = { fg = "#FFC799" },
-          -- mono
-          -- color = { fg = "#EBEBEB" },
         },
         {
           "overseer",
@@ -56,7 +50,7 @@ return {
           colored = true,
         },
       },
-      lualine_y = { "branch" },
+      lualine_y = {},
       lualine_z = { "location" },
     },
     extensions = { "lazy", "quickfix", "trouble", "oil", "overseer" },

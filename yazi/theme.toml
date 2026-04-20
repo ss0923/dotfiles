@@ -1,116 +1,70 @@
 [mgr]
 cwd = { fg = "#a0a0a0" }
-# vesper
 find_keyword = { fg = "#ffc799", bold = true }
 find_position = { fg = "#99ffe4", italic = true }
 marker_selected = { fg = "#ffc799", bg = "#232323" }
 marker_copied = { fg = "#99ffe4", bg = "#232323" }
 marker_cut = { fg = "#ff8080", bg = "#232323" }
-# mono
-# find_keyword = { fg = "#EBEBEB", bold = true }
-# find_position = { fg = "#a0a0a0", italic = true }
-# marker_selected = { fg = "#EBEBEB", bg = "#232323" }
-# marker_copied = { fg = "#a0a0a0", bg = "#232323" }
-# marker_cut = { fg = "#ec8989", bg = "#232323" }
 border_symbol = "│"
 border_style = { fg = "#282828" }
-# vesper
 count_selected = { fg = "#101010", bg = "#ffc799" }
 count_copied = { fg = "#101010", bg = "#99ffe4" }
 count_cut = { fg = "#101010", bg = "#ff8080" }
-# mono
-# count_selected = { fg = "#101010", bg = "#EBEBEB" }
-# count_copied = { fg = "#101010", bg = "#a0a0a0" }
-# count_cut = { fg = "#101010", bg = "#ec8989" }
 
 [indicator]
 current = { reversed = true }
 preview = { reversed = true }
 
 [tabs]
-# vesper
 active = { fg = "#101010", bg = "#ffc799" }
-# mono
-# active = { fg = "#101010", bg = "#EBEBEB" }
 inactive = { fg = "#a0a0a0", bg = "#282828" }
 
 [mode]
-# vesper
 normal_main = { fg = "#101010", bg = "#99ffe4", bold = true }
 normal_alt = { fg = "#99ffe4", bg = "#161616" }
 select_main = { fg = "#101010", bg = "#ffc799", bold = true }
 select_alt = { fg = "#ffc799", bg = "#161616" }
 unset_main = { fg = "#101010", bg = "#ff8080", bold = true }
 unset_alt = { fg = "#ff8080", bg = "#161616" }
-# mono
-# normal_main = { fg = "#101010", bg = "#a0a0a0", bold = true }
-# normal_alt = { fg = "#a0a0a0", bg = "#161616" }
-# select_main = { fg = "#101010", bg = "#EBEBEB", bold = true }
-# select_alt = { fg = "#EBEBEB", bg = "#161616" }
-# unset_main = { fg = "#101010", bg = "#ec8989", bold = true }
-# unset_alt = { fg = "#ec8989", bg = "#161616" }
 
 [status]
 sep_left = { open = "", close = "" }
 sep_right = { open = "", close = "" }
 progress_label = { fg = "#ffffff", bold = true }
 progress_normal = { fg = "#282828", bg = "#161616" }
-# vesper
 progress_error = { fg = "#ff8080", bg = "#161616" }
 perm_type = { fg = "#99ffe4" }
 perm_read = { fg = "#ffc799" }
 perm_write = { fg = "#ff8080" }
 perm_exec = { fg = "#99ffe4" }
-# mono
-# progress_error = { fg = "#ec8989", bg = "#161616" }
-# perm_type = { fg = "#a0a0a0" }
-# perm_read = { fg = "#EBEBEB" }
-# perm_write = { fg = "#ec8989" }
-# perm_exec = { fg = "#a0a0a0" }
 perm_sep = { fg = "#7d7d7d" }
 
 [input]
 border = { fg = "#282828" }
-# vesper
 title = { fg = "#ffc799" }
-# mono
-# title = { fg = "#EBEBEB" }
 value = { fg = "#ffffff" }
 selected = { bg = "#232323" }
 
 [pick]
 border = { fg = "#282828" }
-# vesper
 active = { fg = "#ffc799" }
-# mono
-# active = { fg = "#EBEBEB" }
 inactive = { fg = "#a0a0a0" }
 
 [tasks]
 border = { fg = "#282828" }
-# vesper
 title = { fg = "#ffc799" }
 hovered = { fg = "#ffc799", underline = true }
-# mono
-# title = { fg = "#EBEBEB" }
-# hovered = { fg = "#EBEBEB", underline = true }
 
 [which]
 mask = { bg = "#161616" }
-# vesper
 cand = { fg = "#99ffe4" }
-# mono
-# cand = { fg = "#a0a0a0" }
 rest = { fg = "#7d7d7d" }
 desc = { fg = "#a0a0a0" }
 separator = "  "
 separator_style = { fg = "#343434" }
 
 [help]
-# vesper
 on = { fg = "#99ffe4" }
-# mono
-# on = { fg = "#a0a0a0" }
 run = { fg = "#a0a0a0" }
 desc = { fg = "#7d7d7d" }
 hovered = { bg = "#232323", bold = true }
@@ -118,7 +72,6 @@ footer = { fg = "#a0a0a0", bg = "#161616" }
 
 [filetype]
 rules = [
-  # vesper
   { url = "*/", fg = "#99ffe4" },
   { is = "exec", fg = "#ffc799" },
   { is = "link", fg = "#b9aeda" },
@@ -136,22 +89,4 @@ rules = [
   { mime = "application/pdf", fg = "#ff8080" },
   { mime = "application/doc", fg = "#90b99f" },
   { url = "*", fg = "#a0a0a0" },
-  # mono
-  # { url = "*/", fg = "#a0a0a0" },
-  # { is = "exec", fg = "#EBEBEB" },
-  # { is = "link", fg = "#a0a0a0" },
-  # { is = "orphan", fg = "#ec8989" },
-  # { mime = "image/*", fg = "#a0a0a0" },
-  # { mime = "video/*", fg = "#a0a0a0" },
-  # { mime = "audio/*", fg = "#a0a0a0" },
-  # { mime = "application/zip", fg = "#EBEBEB" },
-  # { mime = "application/gzip", fg = "#EBEBEB" },
-  # { mime = "application/x-tar", fg = "#EBEBEB" },
-  # { mime = "application/x-bzip2", fg = "#EBEBEB" },
-  # { mime = "application/x-xz", fg = "#EBEBEB" },
-  # { mime = "application/x-7z-compressed", fg = "#EBEBEB" },
-  # { mime = "application/x-rar", fg = "#EBEBEB" },
-  # { mime = "application/pdf", fg = "#ec8989" },
-  # { mime = "application/doc", fg = "#a0a0a0" },
-  # { url = "*", fg = "#a0a0a0" },
 ]

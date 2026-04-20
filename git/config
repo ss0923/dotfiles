@@ -50,12 +50,8 @@
 	dark = true
 	line-numbers-left-style = "#505050"
 	line-numbers-right-style = "#505050"
-	# vesper
 	line-numbers-minus-style = "#ff8080"
 	line-numbers-plus-style = "#99ffe4"
-	# mono
-	# line-numbers-minus-style = "#ec8989"
-	# line-numbers-plus-style = "#c9d36a"
 	hyperlinks = true
 	hyperlinks-file-link-format = "file://{path}:{line}"
 

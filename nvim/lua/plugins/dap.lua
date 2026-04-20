@@ -41,16 +41,10 @@ return {
 
       require("nvim-dap-virtual-text").setup({})
 
-      -- vesper
       vim.api.nvim_set_hl(0, "DapBreakpointLine", { bg = "#3a1d1d", default = true })
       vim.api.nvim_set_hl(0, "DapBreakpointConditionLine", { bg = "#3a2c1d", default = true })
       vim.api.nvim_set_hl(0, "DapLogPointLine", { bg = "#1d2b3a", default = true })
       vim.api.nvim_set_hl(0, "DapStoppedLine", { bg = "#3a3a1d", default = true })
-      -- mono
-      -- vim.api.nvim_set_hl(0, "DapBreakpointLine", { bg = "#2a1a1a", default = true })
-      -- vim.api.nvim_set_hl(0, "DapBreakpointConditionLine", { bg = "#2a241a", default = true })
-      -- vim.api.nvim_set_hl(0, "DapLogPointLine", { bg = "#1a242a", default = true })
-      -- vim.api.nvim_set_hl(0, "DapStoppedLine", { bg = "#2a2a1a", default = true })
 
       vim.fn.sign_define("DapBreakpoint", {
         text = "●", texthl = "DiagnosticError", linehl = "DapBreakpointLine", numhl = "DiagnosticError",

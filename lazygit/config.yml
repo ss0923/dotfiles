@@ -3,45 +3,25 @@ gui:
   sidePanelWidth: 0.28
   theme:
     activeBorderColor:
-      # vesper
       - "#ffc799"
       - bold
-      # mono
-      # - "#EBEBEB"
-      # - bold
     inactiveBorderColor:
       - "#505050"
     optionsTextColor:
-      # vesper
       - "#99ffe4"
-      # mono
-      # - "#a0a0a0"
     selectedLineBgColor:
       - "#232323"
     defaultFgColor:
       - "#ffffff"
     unstagedChangesColor:
-      # vesper
       - "#ff8080"
-      # mono
-      # - "#ec8989"
     searchingActiveBorderColor:
-      # vesper
       - "#ffc799"
       - bold
-      # mono
-      # - "#EBEBEB"
-      # - bold
     cherryPickedCommitBgColor:
-      # vesper
       - "#ffcfa8"
-      # mono
-      # - "#343434"
     cherryPickedCommitFgColor:
-      # vesper
       - "#99ffe4"
-      # mono
-      # - "#EBEBEB"
 git:
   overrideGpg: false
   pagers:

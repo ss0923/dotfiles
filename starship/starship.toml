@@ -14,10 +14,7 @@ $python\
 $character"""
 
 [directory]
-# vesper
 style = "#99FFE4"
-# mono
-# style = "#EBEBEB"
 truncation_length = 3
 truncation_symbol = "…/"
 truncate_to_repo = true
@@ -36,12 +33,8 @@ format = " [$branch]($style)"
 style = "#505050"
 
 [git_status]
-# vesper
 format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](#FFC799) ($ahead_behind$stashed)]($style)"
 style = "#99FFE4"
-# mono
-# format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](#EBEBEB) ($ahead_behind$stashed)]($style)"
-# style = "#EBEBEB"
 conflicted = "="
 untracked = "?"
 modified = "!"

@@ -3,10 +3,7 @@ font-family = Symbols Nerd Font
 font-size = 14
 font-thicken = true
 
-# vesper
 theme = vesper
-# mono
-# theme = monochrome
 background-opacity = 0.9
 background-blur-radius = 20
 macos-icon = chalkboard
@@ -27,10 +24,7 @@ selection-foreground = #d4d4d4
 cursor-style = underline
 cursor-style-blink = false
 adjust-cursor-thickness = 3
-# vesper
 cursor-color = #82d9c2
-# mono
-# cursor-color = #EBEBEB
 cursor-text = #101010
 mouse-hide-while-typing = true
 
