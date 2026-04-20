@@ -47,11 +47,6 @@ autocmd("VimLeave", {
   end,
 })
 
--- Detach any LSP client from scratch / preview buffers (buftype != "").
--- Servers like jdtls and spring-boot-ls resolve the buffer URI during
--- didOpen/semantic-tokens/inlay-hints handlers and crash on empty `file://`
--- URIs that scratch buffers produce (gitsigns previews, trouble, neotest, etc.).
--- Detaching immediately prevents the broken requests from firing.
 autocmd("LspAttach", {
   group = augroup,
   desc = "Detach LSPs from scratch/preview buffers",

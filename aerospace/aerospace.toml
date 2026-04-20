@@ -24,12 +24,12 @@ persistent-workspaces = ['1', '2', '3', '4', '5', 'T', 'W', 'N', 'M', 'G', 'S']
 preset = 'qwerty'
 
 [gaps]
-inner.horizontal = 8
-inner.vertical = 8
-outer.left = 8
-outer.right = 8
-outer.top = 8
-outer.bottom = 8
+inner.horizontal = 12
+inner.vertical = 12
+outer.left = 24
+outer.right = 24
+outer.top = 24
+outer.bottom = 24
 
 [mode.main.binding]
 # focus

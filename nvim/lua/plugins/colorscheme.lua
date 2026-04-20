@@ -35,6 +35,14 @@ return {
     vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#343434", bg = "NONE" })
     vim.api.nvim_set_hl(0, "DiffTextAdd", { bg = "#1A3A2A" })
 
+    vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { bg = "#1C1C1C", fg = "#99FFE4" })
+    vim.api.nvim_set_hl(0, "@markup.raw.markdown_inline", { bg = "#1C1C1C", fg = "#99FFE4" })
+    vim.api.nvim_set_hl(0, "@markup.link.label.markdown_inline", { fg = "#FFC799" })
+    vim.api.nvim_set_hl(0, "@markup.link.url.markdown_inline", { fg = "#65737E", underline = true })
+    vim.api.nvim_set_hl(0, "@markup.strong", { bold = true, fg = "#FEFEFE" })
+    vim.api.nvim_set_hl(0, "@markup.italic", { italic = true, fg = "#A0A0A0" })
+    vim.api.nvim_set_hl(0, "@markup.heading", { bold = true, fg = "#FFC799" })
+
     vim.api.nvim_set_hl(0, "SymbolUsageRef", { link = "Comment" })
     vim.api.nvim_set_hl(0, "SymbolUsageImpl", { link = "Constant" })
   end,

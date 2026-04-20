@@ -10,6 +10,13 @@ return {
     },
     track_selection = true,
     focus_after_send = false,
+    diff_opts = {
+      layout = "vertical",
+      open_in_new_tab = true,
+      hide_terminal_in_new_tab = true,
+      keep_terminal_focus = false,
+      on_new_file_reject = "close_window",
+    },
   },
   keys = {
     { "<leader>ac", "<cmd>ClaudeCode<cr>",        desc = "Toggle Claude" },

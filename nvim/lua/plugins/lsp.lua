@@ -86,6 +86,30 @@ return {
         },
         filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
         root_markers = { "package.json", "tsconfig.json", "jsconfig.json" },
+        root_dir = function(bufnr, on_dir)
+          local fname = vim.api.nvim_buf_get_name(bufnr)
+          if fname == "" then return end
+          local start = vim.fs.dirname(fname)
+          if vim.fs.find({ "deno.json", "deno.jsonc" }, { upward = true, path = start })[1] then
+            return
+          end
+          local pkg = vim.fs.find({ "tsconfig.json", "jsconfig.json", "package.json" }, { upward = true, path = start })[1]
+          if pkg then on_dir(vim.fs.dirname(pkg)) end
+        end,
+      })
+
+      vim.lsp.config("tailwindcss", {
+        workspace_required = true,
+        root_markers = {
+          "tailwind.config.js", "tailwind.config.cjs", "tailwind.config.mjs", "tailwind.config.ts",
+          "postcss.config.js",  "postcss.config.cjs",  "postcss.config.mjs",  "postcss.config.ts",
+        },
+        filetypes = {
+          "html", "htmldjango", "htmlangular", "heex",
+          "css", "scss", "sass", "less", "postcss",
+          "javascript", "javascriptreact", "typescript", "typescriptreact",
+          "vue", "svelte", "astro", "templ",
+        },
       })
 
       vim.lsp.config("lua_ls", {
@@ -200,10 +224,13 @@ return {
 
       vim.lsp.config("angularls", {
         workspace_required = true,
+        root_markers = { "angular.json", "nx.json" },
+        filetypes = { "htmlangular" },
       })
 
       vim.lsp.config("htmx", {
         workspace_required = true,
+        filetypes = { "html", "htmldjango", "templ", "astro", "svelte", "vue", "heex", "eelixir" },
       })
 
       vim.lsp.config("denols", {
@@ -213,6 +240,11 @@ return {
 
       vim.lsp.config("graphql", {
         workspace_required = true,
+        root_markers = {
+          ".graphqlrc", ".graphqlrc.json", ".graphqlrc.yml", ".graphqlrc.yaml",
+          "graphql.config.json", "graphql.config.js", "graphql.config.ts",
+        },
+        filetypes = { "graphql" },
       })
 
       vim.lsp.config("oxlint", {
@@ -229,10 +261,39 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
           end
 
-          map("gd", function() Snacks.picker.lsp_definitions() end, "Go to definition")
-          map("gy", function() Snacks.picker.lsp_type_definitions() end, "Go to type definition")
+          local function java_goto(method)
+            return function()
+              local c = vim.lsp.get_clients({ bufnr = 0, name = "jdtls" })[1]
+              if not c then return end
+              local params = vim.lsp.util.make_position_params(0, c.offset_encoding or "utf-16")
+              c:request(method, params, function(err, result)
+                if err or not result then return end
+                local loc = (vim.islist(result) and result[1]) or result
+                if not loc then return end
+                local uri = loc.uri or loc.targetUri
+                local range = loc.range or loc.targetSelectionRange or loc.targetRange
+                if not uri then return end
+                local target = uri:gsub("^file://", "")
+                pcall(vim.api.nvim_cmd, { cmd = "edit", args = { target }, magic = { file = false } }, {})
+                if range then
+                  pcall(vim.api.nvim_win_set_cursor, 0, { range.start.line + 1, range.start.character })
+                end
+              end)
+            end
+          end
+          local function lsp_goto(picker_fn, method)
+            return function()
+              if vim.bo.filetype == "java" then
+                java_goto(method)()
+              else
+                picker_fn()
+              end
+            end
+          end
+          map("gd", lsp_goto(function() Snacks.picker.lsp_definitions() end, "textDocument/definition"), "Go to definition")
+          map("gy", lsp_goto(function() Snacks.picker.lsp_type_definitions() end, "textDocument/typeDefinition"), "Go to type definition")
           map("gD", vim.lsp.buf.declaration, "Go to declaration")
-          map("gi", function() Snacks.picker.lsp_implementations() end, "Go to implementation")
+          map("gi", lsp_goto(function() Snacks.picker.lsp_implementations() end, "textDocument/implementation"), "Go to implementation")
           map("gr", function() Snacks.picker.lsp_references() end, "References")
 
           map("<leader>ca", vim.lsp.buf.code_action, "Code action")
@@ -245,9 +306,6 @@ return {
           map("gK", vim.lsp.buf.signature_help, "Signature help")
           map("<C-k>", vim.lsp.buf.signature_help, "Signature help", "i")
 
-          -- Inlay hints: skip scratch buffers + jdtls (known to return hints with
-          -- positions that break nvim's extmark placement in 0.12 — triggers the
-          -- "Decoration provider nvim.lsp.inlayhint" error popup during edits).
           do
             local c = vim.lsp.get_client_by_id(event.data.client_id)
             if c and c:supports_method("textDocument/inlayHint")

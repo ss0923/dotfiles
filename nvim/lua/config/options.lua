@@ -3,8 +3,6 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
--- Disable netrw — directory handling is done by snacks.dashboard (for `nvim .`),
--- snacks.explorer (on-demand tree), and oil.nvim (edit dir as buffer).
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -63,8 +61,8 @@ opt.timeoutlen = 300
 opt.ttimeout = true
 opt.ttimeoutlen = 10
 opt.guicursor = "n-v-sm:block,i-ci-ve-c:ver25,r-cr-o:hor20"
-local fold_open = "\226\150\190"  -- ▾ U+25BE BLACK DOWN-POINTING SMALL TRIANGLE
-local fold_close = "\226\150\184" -- ▸ U+25B8 BLACK RIGHT-POINTING SMALL TRIANGLE
+local fold_open = "\226\150\190"
+local fold_close = "\226\150\184"
 opt.fillchars = vim.fn.has("nvim-0.12") == 1
   and { eob = " ", foldinner = " ", foldopen = fold_open, foldclose = fold_close, fold = " ", foldsep = " " }
   or { eob = " ", foldopen = fold_open, foldclose = fold_close, fold = " ", foldsep = " " }

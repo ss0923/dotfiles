@@ -119,7 +119,10 @@ return {
   },
   {
     "JavaHello/spring-boot.nvim",
-    ft = { "java", "yaml", "jproperties" },
+    ft = { "java", "jproperties" },
+    event = {
+      { event = "BufReadPre", pattern = { "application*.yml", "application*.yaml", "application*.properties" } },
+    },
     dependencies = {
       "mfussenegger/nvim-jdtls",
     },

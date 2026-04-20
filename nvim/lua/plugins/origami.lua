@@ -7,14 +7,10 @@ return {
       enabled = true,
       foldmethodIfNeitherIsAvailable = "indent",
     },
-    -- Imports intentionally left unfolded on open — closing them after LSP
-    -- settles (origami's default behavior) caused a visible cursor jump on
-    -- slow servers (jdtls). Use `zc` / `zM` manually if needed.
     autoFold = { enabled = false },
     foldtext = {
       enabled = true,
       padding = { character = " ", width = 2 },
-      -- "\226\139\175" = ⋯ (U+22EF MIDLINE HORIZONTAL ELLIPSIS)
       lineCount = { template = "\226\139\175 %d lines", hlgroup = "Comment" },
       diagnosticsCount = true,
       gitsignsCount = true,
@@ -40,9 +36,6 @@ return {
       local buf = vim.api.nvim_create_buf(false, true)
       vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
       vim.bo[buf].modifiable = false
-      -- Use treesitter directly for syntax highlighting instead of setting filetype.
-      -- Setting filetype would trigger LSP attach to this scratch buffer, and some
-      -- servers (e.g. spring-boot LS) crash on the empty URI of scratch buffers.
       local cur_ft = vim.bo.filetype
       local lang = vim.treesitter.language.get_lang(cur_ft) or cur_ft
       pcall(vim.treesitter.start, buf, lang)
