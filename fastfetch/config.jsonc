@@ -18,7 +18,10 @@
       "type": "icon"
     },
     "color": {
+      // vesper
       "keys": "#99FFE4",
+      // mono
+      // "keys": "#a0a0a0",
       "output": "#f0ede8"
     }
   },

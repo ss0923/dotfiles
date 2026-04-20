@@ -524,12 +524,20 @@ bmd() {
 
 # fzf
 export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --exclude .git"
+# vesper
 export FZF_DEFAULT_OPTS=" \
   --color=fg:#ffffff,bg:-1,hl:#ffc799 \
   --color=fg+:#ffffff,bg+:#232323,hl+:#ffc799 \
   --color=info:#a0a0a0,prompt:#99ffe4,pointer:#ffc799 \
   --color=marker:#99ffe4,spinner:#ffc799,header:#505050 \
   --color=border:#282828,gutter:-1"
+# mono
+# export FZF_DEFAULT_OPTS=" \
+#   --color=fg:#ffffff,bg:-1,hl:#EBEBEB \
+#   --color=fg+:#ffffff,bg+:#232323,hl+:#EBEBEB \
+#   --color=info:#a0a0a0,prompt:#a0a0a0,pointer:#EBEBEB \
+#   --color=marker:#a0a0a0,spinner:#EBEBEB,header:#505050 \
+#   --color=border:#282828,gutter:-1"
 export FZF_CTRL_T_COMMAND="fd --type f --type d --strip-cwd-prefix --hidden --follow --exclude .git"
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range :500 {}'"
 export FZF_ALT_C_COMMAND="fd --type d --strip-cwd-prefix --hidden --follow --exclude .git"

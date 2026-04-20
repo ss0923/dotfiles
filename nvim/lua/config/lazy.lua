@@ -19,7 +19,10 @@ require("lazy").setup({
     { import = "plugins" },
   },
   rocks = { enabled = false },
+  -- vesper
   install = { colorscheme = { "vesper" } },
+  -- mono
+  -- install = { colorscheme = { "monochrome" } },
   checker = { enabled = true, notify = false },
   change_detection = { notify = false },
 })
