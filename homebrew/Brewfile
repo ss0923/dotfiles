@@ -161,7 +161,6 @@ cask "sensiblesidebuttons"
 cask "sioyek", args: { no_quarantine: true }  # unnotarized — skip gatekeeper quarantine
 cask "syntax-highlight"
 cask "zen"
-cask "discord"
 cask "kgarner7/feishin/feishin"
 cask "telegram-desktop"
 cask "wispr-flow"

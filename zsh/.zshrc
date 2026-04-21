@@ -7,7 +7,31 @@ fi
 # plugins
 export FORGIT_NO_ALIASES=1
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+fpath=("$XDG_CONFIG_HOME/zsh/completions" $fpath)
 eval "$(sheldon source)"
+
+# cwd-aware npm/yarn token. walks $PWD up to $HOME looking for the nearest
+# .npmrc with a literal _authToken=. lets dual-account macs switch automatically:
+# put manifest token in ~/dev/manifest/.npmrc and personal token in ~/.npmrc.
+function _npm_token_at_cwd() {
+  local dir="$PWD"
+  while [[ "$dir" != "/" && "$dir" != "$HOME" ]]; do
+    if [[ -f "$dir/.npmrc" ]]; then
+      local t
+      t=$(grep '_authToken=' "$dir/.npmrc" 2>/dev/null | grep -v '${NPM_TOKEN}' | head -1 | cut -d= -f2- | tr -d '\r\n')
+      if [[ -n "$t" ]]; then printf '%s' "$t"; return; fi
+    fi
+    dir=${dir:h}
+  done
+  grep '_authToken=' "$HOME/.npmrc" 2>/dev/null | grep -v '${NPM_TOKEN}' | head -1 | cut -d= -f2- | tr -d '\r\n'
+}
+function _set_npm_tokens() {
+  local t; t=$(_npm_token_at_cwd)
+  if [[ -n "$t" ]]; then export NPM_TOKEN="$t" YARN_NPM_AUTH_TOKEN="$t"; fi
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd _set_npm_tokens
+_set_npm_tokens
 
 AUTO_NOTIFY_THRESHOLD=30
 AUTO_NOTIFY_IGNORE=("v" "vim" "nvim" "less" "more" "man" "top" "htop" "btm" "ssh" "tmux" "docker" "lazygit" "lazydocker" "yazi" "claude" "navi" "watch" "tail" "bat")
@@ -582,6 +606,8 @@ export PATH="$HOME/fvm/default/bin:$PATH"
 # sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+[[ -f "$ZDOTDIR/worktree.zsh" ]] && source "$ZDOTDIR/worktree.zsh"
 
 [[ -f "$ZDOTDIR/.zshrc.private" ]] && source "$ZDOTDIR/.zshrc.private"
 

@@ -18,7 +18,7 @@ on-focus-changed = ['move-mouse window-lazy-center']
 
 automatically-unhide-macos-hidden-apps = false
 
-persistent-workspaces = ['1', '2', '3', '4', '5', 'T', 'W', 'N', 'M', 'G', 'S']
+persistent-workspaces = ['1', '2', '3', '4', '5', 'T', 'W', 'N', 'M', 'G', 'R', 'S']
 
 [key-mapping]
 preset = 'qwerty'
@@ -51,6 +51,7 @@ ctrl-alt-shift-cmd-w = 'workspace W'
 ctrl-alt-shift-cmd-n = 'workspace N'
 ctrl-alt-shift-cmd-m = 'workspace M'
 ctrl-alt-shift-cmd-g = 'workspace G'
+ctrl-alt-shift-cmd-r = 'workspace R'
 ctrl-alt-shift-cmd-s = 'workspace S'
 
 
@@ -74,6 +75,7 @@ cmd-alt-shift-w = 'move-node-to-workspace --focus-follows-window W'
 cmd-alt-shift-n = 'move-node-to-workspace --focus-follows-window N'
 cmd-alt-shift-m = 'move-node-to-workspace --focus-follows-window M'
 cmd-alt-shift-g = 'move-node-to-workspace --focus-follows-window G'
+cmd-alt-shift-r = 'move-node-to-workspace --focus-follows-window R'
 cmd-alt-shift-s = 'move-node-to-workspace --focus-follows-window S'
 
 
@@ -101,7 +103,7 @@ cmd-alt-shift-rightSquareBracket = 'join-with right'
 cmd-alt-shift-a = ['join-with left', 'layout accordion horizontal']
 
 # resize mode
-ctrl-alt-shift-cmd-r = 'mode resize'
+ctrl-alt-shift-cmd-backslash = 'mode resize'
 
 [mode.resize.binding]
 h = 'resize width -50'
@@ -125,11 +127,11 @@ run = 'move-node-to-workspace W'
 
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen.personal'
-run = 'move-node-to-workspace W'
+run = ['move-node-to-workspace W', 'layout accordion horizontal']
 
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen.manifest'
-run = 'move-node-to-workspace W'
+run = ['move-node-to-workspace W', 'layout accordion horizontal']
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
@@ -142,6 +144,10 @@ run = 'move-node-to-workspace G'
 [[on-window-detected]]
 if.app-id = 'at.eggerapps.Postico'
 run = 'move-node-to-workspace S'
+
+[[on-window-detected]]
+if.app-id = 'info.sioyek.sioyek'
+run = 'move-node-to-workspace R'
 
 # personal-only app rules
 

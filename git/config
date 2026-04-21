@@ -8,6 +8,7 @@
 
 [push]
 	autoSetupRemote = true
+	followTags = true
 
 [pull]
 	rebase = true
@@ -16,6 +17,7 @@
 	prune = true
 	pruneTags = true
 	fsckObjects = true
+	all = true
 
 [rebase]
 	autoStash = true
@@ -38,6 +40,9 @@
 
 [core]
 	pager = delta
+	fsmonitor = true
+	untrackedCache = true
+	hooksPath = ~/.config/git/hooks
 
 [interactive]
 	diffFilter = delta --color-only
@@ -64,9 +69,11 @@
 [diff]
 	algorithm = histogram
 	colorMoved = default
+	mnemonicPrefix = true
 
 [rerere]
 	enabled = true
+	autoupdate = true
 
 [branch]
 	sort = -committerdate
@@ -102,6 +109,18 @@
 
 [absorb]
 	maxStack = 50
+
+[worktree]
+	guessRemote = true
+
+[feature]
+	manyFiles = true
+
+[submodule]
+	recurse = true
+
+[status]
+	submoduleSummary = true
 
 [credential "https://github.com"]
 	helper =

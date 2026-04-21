@@ -45,6 +45,8 @@ return {
           cmd = {
             "jdtls",
             "--java-executable", java_25_home .. "/bin/java",
+            "--jvm-arg=-javaagent:" .. mason_path .. "/jdtls/lombok.jar",
+            "--jvm-arg=-Xmx2g",
             "-data", workspace_dir,
           },
           root_dir = root_dir,
