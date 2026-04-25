@@ -123,14 +123,6 @@ run = 'move-node-to-workspace T'
 
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
-run = 'move-node-to-workspace W'
-
-[[on-window-detected]]
-if.app-id = 'app.zen-browser.zen.personal'
-run = ['move-node-to-workspace W', 'layout accordion horizontal']
-
-[[on-window-detected]]
-if.app-id = 'app.zen-browser.zen.manifest'
 run = ['move-node-to-workspace W', 'layout accordion horizontal']
 
 [[on-window-detected]]

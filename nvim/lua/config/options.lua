@@ -80,6 +80,9 @@ vim.filetype.add({
     ["%.env"] = "dotenv",
     ["%.env%..*"] = "dotenv",
   },
+  filename = {
+    [".commit-scopes"] = "toml",
+  },
 })
 vim.treesitter.language.register("bash", "dotenv")
 

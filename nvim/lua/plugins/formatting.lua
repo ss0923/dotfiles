@@ -120,6 +120,7 @@ return {
         end
         return nil
       end
+      if in_manifest(bufnr) then return nil end
       return { timeout_ms = 1000, lsp_format = "fallback" }
     end,
   },

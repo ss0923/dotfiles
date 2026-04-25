@@ -147,6 +147,10 @@ alias gbd='git branch -d'
 alias gc='git commit'
 alias gc!='git commit --amend'
 alias gcm='git commit --message'
+alias gci='commit | git commit -F -'
+alias gci!='commit | git commit -F - --amend'
+alias gcf='commit -f | git commit -F -'
+alias gcf!='commit -f | git commit -F - --amend'
 alias gco='git checkout'
 alias gcb='git checkout -b'
 alias gd='git diff'
@@ -169,6 +173,19 @@ alias grh='git reset HEAD'
 alias grhh='git reset HEAD --hard'
 alias gab='git absorb'
 alias gdf='git dft'
+
+# dev sync across macs, quill source and commit.toml files are not in git
+# so they need explicit rsync or tar+ssh. peer defaults to the other mac
+sync-quill() {
+  local peer="${1:-personal}"
+  rsync -av --exclude target --exclude '.DS_Store' \
+    "$HOME/dev/personal/quill/" "$peer":dev/personal/quill/
+}
+sync-quill-scopes() {
+  local peer="${1:-personal}"
+  (cd "$HOME/dev/manifest" && tar -cf - */.shared/commit.toml 2>/dev/null \
+    | ssh "$peer" 'cd dev/manifest && tar -xf -')
+}
 
 # tmux
 alias t='tmux'
@@ -567,6 +584,7 @@ command -v fzf >/dev/null 2>&1 && eval "$(fzf --zsh)"
 eval "$(mise activate zsh)"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
+command -v limb >/dev/null 2>&1 && eval "$(limb init zsh --prefix lm)"
 
 # prompt hooks
 _cmd_ran=0

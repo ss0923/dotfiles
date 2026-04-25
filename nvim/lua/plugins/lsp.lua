@@ -10,14 +10,21 @@ return {
         documentation = { auto_show = true, auto_show_delay_ms = 200 },
       },
       sources = {
-        default = { "ecolog", "lsp", "path", "snippets" },
+        default = { "ecolog", "lsp", "path", "snippets", "emmet" },
         providers = {
+          emmet = {
+            name = "emmet",
+            module = "sources.emmet",
+            async = false,
+            timeout_ms = 0,
+          },
           ecolog = {
             name = "ecolog",
             module = "ecolog.integrations.cmp.blink_cmp",
           },
           lsp = {
-            timeout_ms = 500,
+            async = true,
+            timeout_ms = 0,
             fallbacks = { "buffer" },
             transform_items = function(_, items)
               local text_kind = vim.lsp.protocol.CompletionItemKind.Text
@@ -34,6 +41,9 @@ return {
           },
           snippets = {
             fallbacks = { "buffer" },
+            enabled = function()
+              return not require("sources.emmet").filetypes[vim.bo.filetype]
+            end,
           },
           buffer = {
             score_offset = -3,
@@ -217,6 +227,36 @@ return {
         workspace_required = true,
       })
 
+      vim.lsp.config("html", {
+        settings = {
+          html = {
+            autoClosingTags = false,
+          },
+        },
+      })
+
+      vim.lsp.config("emmet_ls", {
+        cmd = { "emmet-language-server", "--stdio" },
+        root_markers = { ".git" },
+        filetypes = {
+          "astro", "css", "eruby", "html", "htmlangular", "htmldjango",
+          "javascriptreact", "less", "sass", "scss", "svelte",
+          "typescriptreact", "vue",
+          "php", "heex", "eex", "templ", "markdown",
+        },
+        init_options = {
+          showAbbreviationSuggestions = true,
+          showExpandedAbbreviation = "always",
+          showSuggestionsAsSnippets = false,
+          includeLanguages = {
+            heex = "html",
+            eex = "html",
+            templ = "html",
+            markdown = "html",
+          },
+        },
+      })
+
       vim.lsp.config("astro", {
         root_markers = { "astro.config.mjs", "astro.config.ts", "astro.config.js", "astro.config.cjs" },
         workspace_required = true,
@@ -251,7 +291,11 @@ return {
         root_markers = { ".oxlintrc.json", "oxlint.config.ts", "package.json", ".git" },
       })
 
-      vim.lsp.enable(require("config.servers").all)
+      local servers = vim.tbl_filter(function(s)
+        return s ~= "emmet_language_server"
+      end, require("config.servers").all)
+      table.insert(servers, "emmet_ls")
+      vim.lsp.enable(servers)
 
       vim.api.nvim_create_autocmd("LspAttach", {
         desc = "LSP keymaps",

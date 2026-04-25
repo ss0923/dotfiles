@@ -44,3 +44,7 @@ quick-terminal-position = top
 quick-terminal-animation-duration = 0.1
 
 window-save-state = always
+
+command = zsh -c "tmux-main; exec tmux attach -t main"
+
+desktop-notifications = false

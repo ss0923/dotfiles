@@ -5,6 +5,7 @@ M.mason = {
   "vtsls",
   "tailwindcss",
   "html",
+  "emmet_language_server",
   "intelephense",
   "cssls",
   "jsonls",
